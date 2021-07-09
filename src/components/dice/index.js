@@ -1,5 +1,4 @@
 import React from "react";
-import number6 from "../../attributes/number6.png"
 
 function DiceElement(props){
 
