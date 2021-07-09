@@ -1,0 +1,6 @@
+[x] Have 6 dice that get mapped over and generate a random number between 1 & 6 for each
+[] Create a conditional statement that doesn't allow the player to roll the dice again
+until they have selected which ones they want
+[] Only roll the dice that haven't been selected
+[] If blue dice is selected then add up number of white dice as well
+[] Create an animation for dice rolling
