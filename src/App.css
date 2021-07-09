@@ -37,6 +37,18 @@
   }
 }
 
+body {
+  background-color: black !important;
+}
+
+.glossyBG {
+  background: rgba(255, 255, 255, 0.25);
+  background-size: initial;
+  box-shadow: 0 10px 30px rgba(60, 60, 60, 0.4);
+  backdrop-filter: blur(3px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: inline-block;
+}
 
 .dice {
   padding: 4px;
@@ -119,6 +131,16 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.gameSquare {
+  padding: 4px;
+  width: 52px;
+  height: 52px;
+  border-radius: 10%;
+  margin-top: 5px;
+  border-color: black;
+  border-style: solid;
 }
 
 
