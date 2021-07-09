@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Dice from "../dice";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -7,7 +7,9 @@ function DiceSet(props){
 
 
     const dices = ["Yellow", "Blue", "White", "Green", "Orange", "Purple"]
+    const [selectedDice, setSelectedDice] = useState()
 
+    
     
     return (
         <>

@@ -41,6 +41,10 @@ body {
   background-color: black !important;
 }
 
+.avoid-clicks {
+  pointer-events: inherit;
+}
+
 .glossyBG {
   background: rgba(255, 255, 255, 0.25);
   background-size: initial;
