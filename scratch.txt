@@ -4,3 +4,6 @@ until they have selected which ones they want
 [] Only roll the dice that haven't been selected
 [] If blue dice is selected then add up number of white dice as well
 [] Create an animation for dice rolling
+
+
+important:

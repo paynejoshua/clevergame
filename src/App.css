@@ -41,9 +41,7 @@ body {
   background-color: black !important;
 }
 
-.avoid-clicks {
-  pointer-events: inherit;
-}
+
 
 .glossyBG {
   background: rgba(255, 255, 255, 0.25);
@@ -52,6 +50,15 @@ body {
   backdrop-filter: blur(3px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   display: inline-block;
+}
+
+.imgDice {
+  padding: 4px;
+  margin-top: 5px;
+  border-color: black;
+  border-style: solid;
+  border-radius: 10%;
+  
 }
 
 .dice {
@@ -145,6 +152,10 @@ body {
   margin-top: 5px;
   border-color: black;
   border-style: solid;
+}
+
+.highlighted {
+  border-color: red;
 }
 
 

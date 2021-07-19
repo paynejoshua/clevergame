@@ -1,10 +1,9 @@
 import React from "react";
+import DiceSelect from "../../helperfunctions/DiceSelect";
+import DiceShortCut from "../DiceShortCut"
 
 function DiceElement(props){
 
-    function diceSelect(e){
-        console.log(e.target.getAttribute("dicenumber"))
-    }
 
     return (
         <>
@@ -12,86 +11,35 @@ function DiceElement(props){
                 { props.diceResult === 1
                 
                 ? 
-                    <div onClick={diceSelect} dicenumber={1} className="dice first-face" style={{backgroundColor: props.bgColor}}>
-                        <span className="dot"></span>
-                    </div>
+                    <img src={DiceShortCut.OneDice} className="imgDice" onClick={DiceSelect} dicenumber={1} dicecolor={props.bgColor} style={{backgroundColor: props.bgColor}} />
 
                 : props.diceResult === 2 
                 
                 ?
-                    <div onClick={diceSelect} dicenumber={2} className="dice second-face" style={{backgroundColor: props.bgColor}}>
-                        <span className="dot"></span>
-                        <span className="dot"></span>
-                    </div>
+                    <img src={DiceShortCut.TwoDice} className="imgDice" onClick={DiceSelect} dicenumber={2} dicecolor={props.bgColor} style={{backgroundColor: props.bgColor}} />
 
                 : props.diceResult === 3
 
                 ?
-                
-                    <div onClick={diceSelect} dicenumber={3} className="dice third-face" style={{backgroundColor: props.bgColor}}>
-                        <span className="dot"></span>
-                        <span className="dot"></span>
-                        <span className="dot"></span>
-                    </div>
+                    <img src={DiceShortCut.ThreeDice} className="imgDice" onClick={DiceSelect} dicenumber={3} dicecolor={props.bgColor} style={{backgroundColor: props.bgColor}} />
 
                 : props.diceResult === 4
 
                 ?
-                
-                    <div onClick={diceSelect} dicenumber={4} className="dice fourth-face" style={{backgroundColor: props.bgColor}}>
-                        <div className="column">
-                            <span className="dot"></span>
-                            <span className="dot"></span>
-                        </div>
-
-                        <div className="column">
-                            <span className="dot"></span>
-                            <span className="dot"></span>
-                        </div>
-                    </div>
+                    <img src={DiceShortCut.FourDice} className="imgDice" onClick={DiceSelect} dicenumber={4} dicecolor={props.bgColor} style={{backgroundColor: props.bgColor}} />
 
                 : props.diceResult === 5
 
                 ?
-               
-                    <div onClick={diceSelect} dicenumber={5} className="dice fifth-face" style={{backgroundColor: props.bgColor}}>
-                        <div className="column">
-                            <span className="dot"></span>
-                            <span className="dot"></span>
-                        </div>
 
-                        <div className="column">
-                            <span className="dot"></span>
-                        </div>
-
-                        <div className="column">
-                            <span className="dot"></span>
-                            <span className="dot"></span>
-                        </div>
-                    </div>
+                    <img src={DiceShortCut.FiveDice} className="imgDice" onClick={DiceSelect} dicenumber={5} dicecolor={props.bgColor} style={{backgroundColor: props.bgColor}} />
 
                 : props.diceResult === 6
 
                 &&
-                
-                   
-                    <div onClick={diceSelect} dicenumber={6} className="dice sixth-face" style={{backgroundColor: props.bgColor}}>
-                        <div className="column">
-                            <span className="dot"></span>
-                            <span  className="dot"></span>
-                            <span  className="dot"></span>
-                        </div>
 
-                        <div className="column">
-                            <span className="dot"></span>
-                            <span className="dot"></span>
-                            <span className="dot"></span>
-                        </div>
+                    <img src={DiceShortCut.SixDice} className="imgDice" onClick={DiceSelect} dicenumber={6} dicecolor={props.bgColor} style={{backgroundColor: props.bgColor}} />
 
-                        
-                    </div>
-                  
-                
                     }
 
         </>
