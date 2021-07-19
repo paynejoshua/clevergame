@@ -52,97 +52,15 @@ body {
   display: inline-block;
 }
 
-.imgDice {
-  padding: 4px;
-  margin-top: 5px;
-  border-color: black;
-  border-style: solid;
-  border-radius: 10%;
-  
-}
 
 .dice {
   padding: 4px;
-  width: 52px;
-  height: 52px;
-  border-radius: 10%;
   margin-top: 5px;
   border-color: black;
   border-style: solid;
+  border-radius: 10%;
 }
 
-.dot {
-  display: block;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: black;
-}
-
-.first-face {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.second-face {
-  display: flex;
-  justify-content: space-between;
-}
-
-.second-face .dot:nth-of-type(2){
-  align-self: flex-end;
-}
-
-.third-face {
-  display: flex;
-  justify-content: space-between;
-}
-
-.third-face .dot:nth-of-type(2){
-  align-self: center;
-}
-
-.third-face .dot:nth-of-type(3){
-  align-self: flex-end;
-}
-
-.fourth-face {
-  display: flex;
-  justify-content: space-between;
-}
-
-.fourth-face .column {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.fifth-face {
-  display: flex;
-  justify-content: space-between;
-}
-
-.fifth-face .column {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.fifth-face .column:nth-of-type(2){
-  justify-content: center;
-}
-
-.sixth-face {
-  display: flex;
-  justify-content: space-between;
-}
-
-.sixth-face .column {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
 
 .gameSquare {
   padding: 4px;
