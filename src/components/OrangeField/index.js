@@ -5,19 +5,19 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 
 function OrangeField(){
-    const OrangeSquares = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
-
+    
+    const numSquares = 11
     return(
         <>
             <Container className="mt-3">
                 <Card style={{borderColor: "orange", borderWidth: "3px"}}>
                     <Row>
                         <Col className="d-flex justify-content-evenly">                        
-                            {OrangeSquares.map(item => {
+                            {[...Array(numSquares)].map((item, index) => {
                                 return(
-                                   <>
-                                    <div key={item} className="gameSquare"></div>
-                                    </>
+                                   <div key={index}>
+                                        <div  className="gameSquare"></div>
+                                    </div>
                                    
                                 )
                             })}

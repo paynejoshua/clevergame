@@ -1,31 +1,28 @@
-import React, {useState} from "react";
+import React from "react";
 import Dice from "../dice";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
+
 function DiceSet(props){
 
-
-    const dices = ["Yellow", "Blue", "White", "Green", "Orange", "Purple"]
-    const [selectedDice, setSelectedDice] = useState()
+    let dices = props.availableDices
 
     
     
     return (
         <>
-            { props.rolled 
-             && 
+           
             <Row>
-                {dices.map(item =>
+                {dices.map((item, index) =>
                     
-                    <Col key={item}>
-                        <Dice diceResult={Math.floor(Math.random() * 6) + 1} bgColor={item}/>
+                    <Col key={index}>
+                        <Dice turnState={props.turnState} onDiceSelect={props.onDiceSelect} dice={item}/>
                     </Col>
 
                     )}
                 </Row>
             
-}
         </>
     )
 }

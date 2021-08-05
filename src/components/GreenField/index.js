@@ -6,7 +6,7 @@ import Card from "react-bootstrap/Card";
 
 function GreenField(){
 
-    const GreenSquares = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    const GreenSquares = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 6]
 
     return(
         <>
@@ -14,12 +14,15 @@ function GreenField(){
                 <Card style={{borderColor: "green", borderWidth: "3px"}}>
                     <Row>
                         <Col className="d-flex justify-content-evenly">                        
-                            {GreenSquares.map(item => {
+                            {GreenSquares.map((item, index) => {
                                 return(
-                                   <>
-                                    <div key={item} className="gameSquare">{item}</div>
-                                    <div className="align-self-center">≥</div>
-                                    </>
+                                   <div key={index}>
+                                    <div className="gameSquare d-inline-block">{item}</div>
+                                    {
+                                        item === 6 ? <></> : <div className="align-self-center d-inline-block">≥</div>
+                                    }
+                                    
+                                    </div>
                                    
                                 )
                             })}

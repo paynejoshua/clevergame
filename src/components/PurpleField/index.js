@@ -16,14 +16,19 @@ function PurpleField(){
                         <Col className="d-flex justify-content-evenly">                        
                             {PurpleSquares.map(item => {
                                 return(
-                                   <>
-                                    <div key={item} className="gameSquare"></div>
+                                   <div key={item}>
+                                    <div className="gameSquare d-inline-block"></div>
                                    
-    
-                                    <div className="align-self-center">></div>
+                                    {
+                                    item === 11
+                                    ? <></>
+                                    :
+                                    <div className="align-self-center d-inline-block">></div>
+                                    
+                                    }
                                         
                                     
-                                    </>
+                                    </div>
                                     
                                    
                                 )
