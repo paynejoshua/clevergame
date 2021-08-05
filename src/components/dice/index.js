@@ -20,7 +20,7 @@ function DiceElement(props){
 
     return (
         <>
-        <img src={getDiceImage()} alt={`${props.dice.number} dice`} className={`dice ${props.turnState === TurnState.SelectDie ? 'selected' : ""}`} onClick={() => props.onDiceSelect(props.dice)} style={{backgroundColor: props.dice.color}} />
+        <img src={getDiceImage()} alt={`${props.dice.number} dice`} className={`dice ${props.turnState === TurnState.SelectDie ? 'selectedDice' : ""}`} onClick={() => props.onDiceSelect(props.dice)} style={{backgroundColor: props.dice.color}} />
            
                 
 

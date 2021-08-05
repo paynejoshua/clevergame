@@ -14,7 +14,7 @@ function DiceRoller(props){
                     <Card.Title className="d-flex justify-content-center">How Clever Are You?</Card.Title>
                         <DiceSet turnState={props.turnState} availableDices={props.availableDices} onDiceSelect={props.onDiceSelect} />
                     <div className="d-flex justify-content-center">
-                        <Button disabled={props.turnState !== TurnState.RollDice} className={`mt-2 ${props.turnState === TurnState.RollDice ? "selected" : ""}`} onClick={props.onRoll}>Roll Dice</Button>
+                        <Button disabled={props.turnState !== TurnState.RollDice} className={`mt-2 ${props.turnState === TurnState.RollDice ? "rollDiceBtn" : ""}`} onClick={props.onRoll}>Roll Dice</Button>
                     </div>
 
                 </Card.Body>
