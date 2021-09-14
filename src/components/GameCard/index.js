@@ -96,16 +96,10 @@ function GameCard(){
             }
             
         setLeftOverDice(newLeftOverDice);
-       
-
-        console.log("new left over dice",newLeftOverDice)
-
 
         let tempAvailableDice = [...availableDices];
-        console.log("1", tempAvailableDice)
         
         tempAvailableDice = tempAvailableDice.filter(d => !newLeftOverDice.includes(d)) 
-        console.log("2",tempAvailableDice)
 
         setAvailableDices(tempAvailableDice)
 
