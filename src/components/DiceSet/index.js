@@ -1,5 +1,5 @@
 import React from "react";
-import Dice from "../dice";
+import Dice from "../../helperfunctions/dice";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
@@ -7,9 +7,7 @@ import Col from "react-bootstrap/Col";
 function DiceSet(props){
 
     let dices = props.availableDices
-
-    
-    
+        
     return (
         <>
            

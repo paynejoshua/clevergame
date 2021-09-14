@@ -1,6 +1,6 @@
 import React from "react";
-import DiceShortCut from "../DiceShortCut";
-import TurnState from "../../helperfunctions/types";
+import DiceShortCut from "../../components/DiceShortCut";
+import TurnState from "../types";
 
 
 function DiceElement(props){
@@ -20,7 +20,7 @@ function DiceElement(props){
 
     return (
         <>
-        <img src={getDiceImage()} alt={`${props.dice.number} dice`} className={`dice ${props.turnState === TurnState.SelectDie ? 'selectedDice' : ""}`} onClick={() => props.onDiceSelect(props.dice)} style={{backgroundColor: props.dice.color}} />
+        <img src={getDiceImage()} alt={`${props.dice.number} dice`} className={`dice ${props.turnState === TurnState.SelectDie ? 'selectedPulse' : ""}`} onClick={() => props.onDiceSelect(props.dice)} style={{backgroundColor: props.dice.color}} />
            
                 
 
