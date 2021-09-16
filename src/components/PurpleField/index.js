@@ -3,10 +3,34 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
+import TurnState from "../../helperfunctions/types";
+import DiceElement from "../../helperfunctions/dice"
 
-function PurpleField(){
+function PurpleField(props){
 
     const PurpleSquares = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+
+    const purpleDiceCheck = (item, index) => {
+        console.log(props)
+        return (props.turnState === TurnState.PlaceDie 
+            && index === props.state.length 
+            &&  (props.lastSelectedDice.color === "Purple" || props.lastSelectedDice.color === "White")
+            && (props.state.length === 0
+            || props.lastSelectedDice.number > props.state[props.state.length -1].number
+            || props.state[props.state.length -1].number === 6)
+
+            ) 
+    
+    }
+
+    const handleClick = (item, index) => {
+        if(purpleDiceCheck(item, index)){
+            let setColorOfDice = {...props.lastSelectedDice}
+            setColorOfDice.color = "Purple"
+            props.state.push(setColorOfDice)
+            props.onDicePlaced()
+        }
+    }
 
     return(
         <>
@@ -14,11 +38,14 @@ function PurpleField(){
                 <Card style={{borderColor: "purple", borderWidth: "3px"}}>
                     <Row>
                         <Col className="d-flex justify-content-evenly">                        
-                            {PurpleSquares.map(item => {
+                            {PurpleSquares.map((item, index) => {
                                 return(
                                    <div key={item}>
-                                    <div className="gameSquare d-inline-block"></div>
-                                   
+                                    {
+                                        props.state.length > index
+                                        ? <DiceElement dice={props.state[index]}/>
+                                        : <div onClick={() => handleClick(item, index)} className={`gameSquare d-inline-block ${purpleDiceCheck(item, index) ? "selectedPulse purpleBorder" : ""}`}></div>
+                                   }
                                     {
                                     item === 11
                                     ? <></>

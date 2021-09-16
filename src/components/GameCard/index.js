@@ -10,8 +10,9 @@ import BlueField from "../BlueField";
 import GreenField from "../GreenField"
 import OrangeField from "../OrangeField"
 import PurpleField from "../PurpleField";
-import LeftOverField from "../LeftOverField/leftoverfield.js"
-import TurnState from "../../helperfunctions/types"
+import LeftOverField from "../LeftOverField/leftoverfield.js";
+import TurnState from "../../helperfunctions/types";
+import PlayerState from "../../models/playerModel"
 
 
 function GameCard(){   
@@ -20,6 +21,7 @@ function GameCard(){
     const [availableDices, setAvailableDices] = useState([]) 
     const [selectedDice, setSelectedDice] = useState([])
     const [leftOverDice, setLeftOverDice] = useState([])
+    const [playerState, setPlayerState] = useState(PlayerState)
     
     function onDiceRoll(){
         if(turnState !== TurnState.RollDice){
@@ -37,8 +39,11 @@ function GameCard(){
             updatedSelectedDice.push(dice)
             setSelectedDice(updatedSelectedDice)
             let updatedAvailableDices = availableDices.filter(d => d.color !== dice.color)
+
+
             setAvailableDices(updatedAvailableDices)
 
+            moveDiceToPlatter(dice, updatedAvailableDices)
             
             setTurnState(TurnState.PlaceDie)
         } else if (turnState === TurnState.PlaceDie){
@@ -58,9 +63,12 @@ function GameCard(){
                 let tempAvailableDice = availableDices.filter(d => d.color !== dice.color)
                 tempAvailableDice.push(previousDie)
 
-
+               
                 setAvailableDices(tempAvailableDice)
+
         }
+
+       
     }
 
     function newDice(){
@@ -74,30 +82,28 @@ function GameCard(){
         setAvailableDices(tempArr)
     }
 
-    function onYellowClick(){
+    function moveDiceToPlatter(selectedDice, newAvailableDice){
 
-        //left off here. Going to create a loop of available die to disable die with number that is lower than the previously selected die
-
-        //here I am seeing if the selected dice(s) have a number that is greater than the ones still available
-                //if so then I am disabling the available dice which will be placed in the left over pile for other players to use.
+        //here I am seeing if the selected dice(s) have a number that is greater than the ones still available [X]Done
+                //if so then I am disabling the available dice which will be placed in the left over pile for other players to use. [X]Done
                 //note: the current player should be able to take a dice out of the leftover pile when they are on this step but the leftover 
-                    //dice should be locked once the player moves past this step.
+                    //dice should be locked once the player moves past this step. []Donew
         
-        let lastSelectedDice = selectedDice[selectedDice.length - 1];
+        
         let newLeftOverDice = [...leftOverDice];
 
         
-        for(let i = 0; i < availableDices.length; i++){
+        for(let i = 0; i < newAvailableDice.length; i++){
            
-                if(lastSelectedDice.number > availableDices[i].number){
-                    newLeftOverDice.push(availableDices[i]);
+                if(selectedDice.number > newAvailableDice[i].number){
+                    newLeftOverDice.push(newAvailableDice[i]);
                 }
                 
             }
             
         setLeftOverDice(newLeftOverDice);
 
-        let tempAvailableDice = [...availableDices];
+        let tempAvailableDice = [...newAvailableDice];
         
         tempAvailableDice = tempAvailableDice.filter(d => !newLeftOverDice.includes(d)) 
 
@@ -110,6 +116,10 @@ function GameCard(){
         setTurnState(TurnState.RollDice);
             
         
+    }
+
+    const handleDicePlace = () => {
+        setTurnState(TurnState.RollDice)
     }
  
 
@@ -144,8 +154,7 @@ function GameCard(){
                     </Col>
 
                     <Col xs={6} sm={6} md={6} lg={6} xl={6} xxl={6}>
-                    
-                                <YellowField onClick={onYellowClick} />
+                                <YellowField turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length -1]}/>
                     </Col>
 
                     <Col xs={6} sm={6} md={6} lg={6} xl={6} xxl={6}>
@@ -162,7 +171,7 @@ function GameCard(){
                     </Col>
                     <Col xs={12} sm={12} md={12} lg={12} xl={12} xxl={12}>
                     
-                                <PurpleField  />
+                                <PurpleField turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length -1]} state={playerState.purpleState} onDicePlaced={handleDicePlace}/>
                     </Col>
 
                 </Row>

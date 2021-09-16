@@ -1,23 +1,13 @@
 import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import DiceShortCut from "../DiceShortCut"
+import DiceShortCut from "../DiceShortCut";
+import DiceElement from "../../helperfunctions/dice"
 
 
 function KeptDice(props){
 
-    function getDiceImage(number){
-        switch(number){
-            case 1: return DiceShortCut.OneDice
-            case 2: return DiceShortCut.TwoDice
-            case 3: return DiceShortCut.ThreeDice
-            case 4: return DiceShortCut.FourDice
-            case 5: return DiceShortCut.FiveDice
-            case 6: return DiceShortCut.SixDice
-                default: return ""
 
-        }
-    }
 
     return (
         <>
@@ -28,7 +18,7 @@ function KeptDice(props){
                         <Col key={index}>
                             {props.selectedDice.length > index
                                 ?
-                                <img src={getDiceImage(props.selectedDice[index].number)} alt={`${props.selectedDice[index].number} dice`} className="dice" style={{backgroundColor: props.selectedDice[index].color}} /> 
+                                <DiceElement dice={props.selectedDice[index]}/>
                                 : <div className="gameSquare" style={{ backgroundColor: "white" }}>{}</div>
 
                             }
