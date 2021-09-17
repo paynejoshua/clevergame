@@ -4,6 +4,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import TurnState from "../../helperfunctions/types";
+import DiceElement from "../../helperfunctions/dice";
 
 function YellowField(props){
 
@@ -11,9 +12,26 @@ function YellowField(props){
 
 
     const yellowDiceCheck = (item) => {
-        return (props.turnState === TurnState.PlaceDie &&  props.lastSelectedDice.number === item && props.lastSelectedDice.color === "Yellow") 
+        return (props.turnState === TurnState.PlaceDie 
+            &&  props.lastSelectedDice.number === item 
+            && (props.lastSelectedDice.color === "Yellow" || props.lastSelectedDice.color === "White")
+            ) 
     
     }
+
+    const handleClick = (item, index) => {
+
+
+        if(yellowDiceCheck(item)){
+            let setColorOfDice = {...props.lastSelectedDice}
+            setColorOfDice.color = "Yellow"
+            setColorOfDice.index = index
+            props.state[index] = setColorOfDice
+            props.onDicePlaced()
+        }
+    }
+
+   console.log("length of undefined", props.state.length)
 
     return(
         
@@ -23,10 +41,17 @@ function YellowField(props){
                         {YellowChoices.map((item, index) =>{
                             return(
                             <Col xs={3} sm={3} md={3} lg={3} xl={3} xxl={3} key={index}>
-                               <div className={`gameSquare d-flex justify-content-center ${yellowDiceCheck(item) ? "selectedPulse yellowBorder" : ""}`}>
+                               
+                               {
+                                props.state.length > index && props.state[index]
+                                ?  <DiceElement dice={props.state[index]} />
+                                : <div onClick={() => handleClick(item, index)} className={`gameSquare d-flex justify-content-center ${yellowDiceCheck(item) ? "selectedPulse yellowBorder" : ""}`}>
                                 {item}
-                               </div>
+                               </div>  
                                 
+                                  
+                               }
+
                             </Col>
                             )
                         })}
@@ -38,3 +63,4 @@ function YellowField(props){
 }
 
 export default YellowField
+

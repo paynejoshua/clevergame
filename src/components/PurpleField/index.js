@@ -4,14 +4,13 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import TurnState from "../../helperfunctions/types";
-import DiceElement from "../../helperfunctions/dice"
+import DiceElement from "../../helperfunctions/dice";
 
 function PurpleField(props){
 
     const PurpleSquares = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 
     const purpleDiceCheck = (item, index) => {
-        console.log(props)
         return (props.turnState === TurnState.PlaceDie 
             && index === props.state.length 
             &&  (props.lastSelectedDice.color === "Purple" || props.lastSelectedDice.color === "White")

@@ -3,10 +3,32 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
+import TurnState from "../../helperfunctions/types";
+import DiceElement from "../../helperfunctions/dice";
 
-function GreenField(){
+function GreenField(props){
 
     const GreenSquares = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5, 6]
+
+    const greenDiceCheck = (item, index) => {
+        return (props.turnState === TurnState.PlaceDie 
+            && index === props.state.length 
+            && (props.lastSelectedDice.color === "Green" || props.lastSelectedDice.color === "White")
+            && (props.lastSelectedDice.number >= item || props.lastSelectedDice.number >= props.state[props.state.length -1].number)
+
+            ) 
+    
+    }
+
+    const handleClick = (item, index) => {
+        if(greenDiceCheck(item, index)){
+            let setColorOfDice = {...props.lastSelectedDice}
+            setColorOfDice.color = "Green"
+            props.state.push(setColorOfDice)
+            props.onDicePlaced()
+        }
+    }
+
 
     return(
         <>
@@ -17,7 +39,11 @@ function GreenField(){
                             {GreenSquares.map((item, index) => {
                                 return(
                                    <div key={index}>
-                                    <div className="gameSquare d-inline-block">{item}</div>
+                                    {
+                                        props.state.length > index
+                                        ? <DiceElement dice={props.state[index]}/>
+                                    : <div onClick={() => handleClick(item, index)} className={`gameSquare d-inline-block ${greenDiceCheck(item, index) ? "selectedPulse greenBorder" : ""}`}>{item}</div>
+                                        }
                                     {
                                         item === 6 ? <></> : <div className="align-self-center d-inline-block">≥</div>
                                     }

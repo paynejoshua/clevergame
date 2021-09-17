@@ -139,7 +139,7 @@ function GameCard(){
     return (
         <>
             <Container className="d-flex justify-content-center mt-5" >
-                <Card style={{background: "rgba(255, 255, 255, 0.25)"}}>
+                <Card style={{background: "rgba(255, 255, 255, 0.25)"}} >
 
                 
                 <Row className="mt-5 mb-5">
@@ -154,20 +154,20 @@ function GameCard(){
                     </Col>
 
                     <Col xs={6} sm={6} md={6} lg={6} xl={6} xxl={6}>
-                                <YellowField turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length -1]}/>
+                                <YellowField turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length -1]} state={playerState.yellowState} onDicePlaced={handleDicePlace}/>
                     </Col>
 
                     <Col xs={6} sm={6} md={6} lg={6} xl={6} xxl={6}>
                     
-                                <BlueField  />
+                                <BlueField turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length -1]} state={playerState.blueState} onDicePlaced={handleDicePlace} />
                     </Col>
                     <Col xs={12} sm={12} md={12} lg={12} xl={12} xxl={12}>
                     
-                                <GreenField  />
+                                <GreenField turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length -1]} state={playerState.greenState} onDicePlaced={handleDicePlace} />
                     </Col>
                     <Col xs={12} sm={12} md={12} lg={12} xl={12} xxl={12}>
                     
-                                <OrangeField  />
+                                <OrangeField turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length -1]} state={playerState.orangeState} onDicePlaced={handleDicePlace} />
                     </Col>
                     <Col xs={12} sm={12} md={12} lg={12} xl={12} xxl={12}>
                     
