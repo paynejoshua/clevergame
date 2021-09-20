@@ -66,8 +66,8 @@ body {
 
 .gameSquare {
   padding: 4px;
-  width: 52px;
-  height: 52px;
+  width: 4rem;
+  height: 4rem;
   border-radius: 10%;
   margin-top: 5px;
   border-color: black;
@@ -115,5 +115,9 @@ body {
 
 .greenBorder {
   background-color: green;
+}
+
+.blueBorder {
+  background-color: blue;
 }
 

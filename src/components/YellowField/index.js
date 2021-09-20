@@ -25,18 +25,15 @@ function YellowField(props){
         if(yellowDiceCheck(item)){
             let setColorOfDice = {...props.lastSelectedDice}
             setColorOfDice.color = "Yellow"
-            setColorOfDice.index = index
             props.state[index] = setColorOfDice
-            props.onDicePlaced()
+            props.onDicePlaced(item)
         }
     }
-
-   console.log("length of undefined", props.state.length)
 
     return(
         
             <Container onClick={props.onClick} className="mt-3">
-                <Card style={{width: "18rem", borderColor: "#ffd900", borderWidth: "3px"}}>
+                <Card style={{width: "25rem", borderColor: "#ffd900", borderWidth: "3px"}}>
                     <Row>
                         {YellowChoices.map((item, index) =>{
                             return(
@@ -45,7 +42,7 @@ function YellowField(props){
                                {
                                 props.state.length > index && props.state[index]
                                 ?  <DiceElement dice={props.state[index]} />
-                                : <div onClick={() => handleClick(item, index)} className={`gameSquare d-flex justify-content-center ${yellowDiceCheck(item) ? "selectedPulse yellowBorder" : ""}`}>
+                                : <div onClick={() => handleClick(item, index)} style={{fontSize: "2rem"}} className={`gameSquare d-flex justify-content-center ${yellowDiceCheck(item) ? "selectedPulse yellowBorder" : ""}`}>
                                 {item}
                                </div>  
                                 

@@ -22,6 +22,11 @@ function GameCard(){
     const [selectedDice, setSelectedDice] = useState([])
     const [leftOverDice, setLeftOverDice] = useState([])
     const [playerState, setPlayerState] = useState(PlayerState)
+    const [wildDice, setWildDice] = useState()
+    const [blueDice, setBlueDice] = useState()
+
+
+   
     
     function onDiceRoll(){
         if(turnState !== TurnState.RollDice){
@@ -73,14 +78,24 @@ function GameCard(){
 
     function newDice(){
         let tempArr = []
+       
         for(let i=0; i < availableDices.length; i++){
             let die = availableDices[i]
             die.number = Math.floor(Math.random() * 6) + 1
             tempArr.push(die)
+            if(die.color === "White"){
+                setWildDice(die)
+            } else if(die.color === "Blue"){
+                setBlueDice(die)
+            }
+
+           
         }
 
         setAvailableDices(tempArr)
+        
     }
+
 
     function moveDiceToPlatter(selectedDice, newAvailableDice){
 
@@ -118,24 +133,43 @@ function GameCard(){
         
     }
 
-    const handleDicePlace = () => {
+    const handleDicePlace = (dice) => {
+        if(PlayerState.rounds === 3){
+            diceReset()
+            PlayerState.rounds = 0
+        } else{
+
         setTurnState(TurnState.RollDice)
+        // dice.isPlaced = true
+        PlayerState.rounds += 1 }
     }
- 
 
+    console.log("playerState", PlayerState.rounds)
 
-    useEffect(()=>{
+    const diceReset = () => {
+        setLeftOverDice([])
+        setSelectedDice([])
+
         const availableColors = ["Yellow", "Blue", "White", "Green", "Orange", "Purple"]
         let tempArr = []
         for(let i = 0; i < availableColors.length; i++){
             tempArr.push({
                 color: availableColors[i],
                 number: Math.floor(Math.random() * 6) + 1,
+                // isPlaced: false
             })
         }
         setAvailableDices(tempArr)
-    }, [])
+    }
+ 
+    console.log(leftOverDice, selectedDice)
 
+    useEffect(()=>{
+
+        diceReset()
+        
+    }, [])
+   
     return (
         <>
             <Container className="d-flex justify-content-center mt-5" >
@@ -145,7 +179,7 @@ function GameCard(){
                 <Row className="mt-5 mb-5">
                     <Col xs={6} sm={6} md={6} lg={6} xl={6} xxl={6} className="d-flex justify-content-center" >
                                 <KeptDice selectedDice={selectedDice} />
-                                <DiceRoller turnState={turnState} onRoll={onDiceRoll} availableDices={availableDices} onDiceSelect={onDiceSelect} />
+                                <DiceRoller turnState={turnState} onRoll={onDiceRoll} onDiceReset={diceReset} turn={PlayerState.rounds} availableDices={availableDices} onDiceSelect={onDiceSelect} />
                     </Col>
                     
 
@@ -159,7 +193,7 @@ function GameCard(){
 
                     <Col xs={6} sm={6} md={6} lg={6} xl={6} xxl={6}>
                     
-                                <BlueField turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length -1]} state={playerState.blueState} onDicePlaced={handleDicePlace} />
+                                <BlueField whiteDice={wildDice} blueDice={blueDice} turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length -1]} state={playerState.blueState} onDicePlaced={handleDicePlace} />
                     </Col>
                     <Col xs={12} sm={12} md={12} lg={12} xl={12} xxl={12}>
                     

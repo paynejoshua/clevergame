@@ -4,6 +4,7 @@ const PlayerState = {
     greenState: [],
     orangeState: [],
     purpleState: [],
+    rounds: 0,
 
 }
 

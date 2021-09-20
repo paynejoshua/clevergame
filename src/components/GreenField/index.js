@@ -42,11 +42,8 @@ function GreenField(props){
                                     {
                                         props.state.length > index
                                         ? <DiceElement dice={props.state[index]}/>
-                                    : <div onClick={() => handleClick(item, index)} className={`gameSquare d-inline-block ${greenDiceCheck(item, index) ? "selectedPulse greenBorder" : ""}`}>{item}</div>
+                                    : <div onClick={() => handleClick(item, index)} style={{fontSize: "2rem"}} className={`gameSquare d-inline-block ${greenDiceCheck(item, index) ? "selectedPulse greenBorder" : ""}`}>{item}<span>≥</span></div>
                                         }
-                                    {
-                                        item === 6 ? <></> : <div className="align-self-center d-inline-block">≥</div>
-                                    }
                                     
                                     </div>
                                    
