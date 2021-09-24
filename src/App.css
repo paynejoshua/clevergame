@@ -39,6 +39,12 @@
 
 body {
   background-color: black !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -mox-user-select: none;
+  -ms-user-select: none;
+  -user-select: none;
 }
 
 
@@ -120,4 +126,9 @@ body {
 .blueBorder {
   background-color: blue;
 }
+
+.nonSelectable {
+  pointer-events: none;
+}
+
 

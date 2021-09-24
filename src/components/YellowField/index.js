@@ -23,10 +23,11 @@ function YellowField(props){
 
 
         if(yellowDiceCheck(item)){
-            let setColorOfDice = {...props.lastSelectedDice}
-            setColorOfDice.color = "Yellow"
-            props.state[index] = setColorOfDice
-            props.onDicePlaced(item)
+            let setColorOfDice = {...props.lastSelectedDice};
+            setColorOfDice.color = "Yellow";
+            setColorOfDice.isPlaced = true;
+            props.state[index] = setColorOfDice;
+            props.onDicePlaced(item);
         }
     }
 
@@ -41,8 +42,11 @@ function YellowField(props){
                                
                                {
                                 props.state.length > index && props.state[index]
-                                ?  <DiceElement dice={props.state[index]} />
-                                : <div onClick={() => handleClick(item, index)} style={{fontSize: "2rem"}} className={`gameSquare d-flex justify-content-center ${yellowDiceCheck(item) ? "selectedPulse yellowBorder" : ""}`}>
+                                ?  <DiceElement disabledClick={true} dice={props.state[index]} />
+                                : <div
+                                onClick={() => handleClick(item, index)} 
+                                style={{fontSize: "2rem"}} 
+                                className={`gameSquare d-flex justify-content-center ${yellowDiceCheck(item) ? "selectedPulse yellowBorder" : ""}`}>
                                 {item}
                                </div>  
                                 

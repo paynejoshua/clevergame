@@ -40,7 +40,7 @@ function OrangeField(props){
                                    <div key={index}>
                                        {
                                         props.state.length > index
-                                        ? <DiceElement dice={props.state[index]}/>
+                                        ? <DiceElement disabledClick={true} dice={props.state[index]}/>
                                         : <div onClick={() => handleClick(item, index)} className={`gameSquare d-inline-block ${orangeDiceCheck(item, index) ? "selectedPulse orangeBorder" : ""}`}></div>
                                         }
                                     </div>

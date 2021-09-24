@@ -42,7 +42,7 @@ function PurpleField(props){
                                    <div key={item}>
                                     {
                                         props.state.length > index
-                                        ? <DiceElement dice={props.state[index]}/>
+                                        ? <DiceElement disabledClick={true} dice={props.state[index]}/>
                                         : <div onClick={() => handleClick(item, index)} style={{fontSize: "2rem", textAlign: "center"}} className={`gameSquare d-inline-block ${purpleDiceCheck(item, index) ? "selectedPulse purpleBorder" : ""}`}>{item === 1 ? "" :  <span>></span>}</div>
                                    }
                                         

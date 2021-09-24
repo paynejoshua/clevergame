@@ -134,19 +134,15 @@ function GameCard(){
     }
 
     const handleDicePlace = (dice) => {
-        if(PlayerState.rounds === 3){
-            diceReset()
-            PlayerState.rounds = 0
-        } else{
 
         setTurnState(TurnState.RollDice)
-        // dice.isPlaced = true
-        PlayerState.rounds += 1 }
+        PlayerState.rounds += 1
     }
 
-    console.log("playerState", PlayerState.rounds)
 
     const diceReset = () => {
+
+        PlayerState.rounds = 0
         setLeftOverDice([])
         setSelectedDice([])
 
