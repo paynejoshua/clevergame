@@ -4,26 +4,17 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import BlueWhite from "../../assets/BlueWhiteCombo.svg";
-import TurnState from "../../helperfunctions/types";
+import {BlueDiceCheck} from "../../helperfunctions/CheckDice"
 
 function BlueField(props){
 
     const BlueChoices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-    const blueDiceCheck = (item) => {
-
-            return (props.turnState === TurnState.PlaceDie 
-                &&  props.blueDice.number + props.whiteDice.number === item 
-                && (props.lastSelectedDice.color === "Blue" || props.lastSelectedDice.color === "White")
-                ) 
-        
-    
-    }
 
 
-    const handleClick = (item, index) => {
+    const handleClick = (item, index, props) => {
 
-        if(blueDiceCheck(item)){
+        if(BlueDiceCheck(item, props)){
             let setColorOfDice = {...props.lastSelectedDice}
             setColorOfDice.color = "Blue"
             setColorOfDice.index = index
@@ -48,7 +39,7 @@ function BlueField(props){
 
                                 :  props.state.length > index && props.state[index]
                                 ?  <div className="gameSquare d-flex justify-content-center" style={{backgroundColor: "blue", color: "white", fontSize:"2rem"}}>{item}</div>
-                                : <div onClick={() => handleClick(item, index)} style={{fontSize: "2rem"}} className={`gameSquare d-flex justify-content-center ${blueDiceCheck(item) ? "selectedPulse blueBorder" : ""}`}>
+                                : <div onClick={() => handleClick(item, index, props)} style={{fontSize: "2rem"}} className={`gameSquare d-flex justify-content-center ${BlueDiceCheck(item, props) ? "selectedPulse blueBorder" : ""}`}>
                                 {item}
                                </div> 
                                

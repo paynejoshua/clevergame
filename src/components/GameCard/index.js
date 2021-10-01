@@ -48,11 +48,16 @@ function GameCard(){
 
             setAvailableDices(updatedAvailableDices)
 
-            moveDiceToPlatter(dice, updatedAvailableDices)
+            let actionState = 1
+
+            moveDiceToPlatter(dice, updatedAvailableDices, actionState)
             
             setTurnState(TurnState.PlaceDie)
-        } else if (turnState === TurnState.PlaceDie){
+            
+            
+        } else if (turnState === TurnState.PlaceDie || turnState === TurnState.RollDice){
                 //this means the player is swapping out the last chosen die for a different die
+                console.log("leftover turn state", turnState)
 
                 let previousDie = selectedDice[selectedDice.length - 1]
 
@@ -68,13 +73,63 @@ function GameCard(){
                 let tempAvailableDice = availableDices.filter(d => d.color !== dice.color)
                 tempAvailableDice.push(previousDie)
 
-               
+
                 setAvailableDices(tempAvailableDice)
+
+                let actionState;
+
+                if(turnState === TurnState.RollDice){
+                    actionState = 3
+                } else if(turnState === TurnState.PlaceDice){
+                    actionState = 1
+                }
+
+                
+                moveDiceToPlatter(dice, tempAvailableDice, actionState)
 
         }
 
        
     }
+
+    function moveDiceToPlatter(selectedDice, newAvailableDice, action){
+
+        //here I am seeing if the selected dice(s) have a number that is greater than the ones still available [X]Done
+                //if so then I am disabling the available dice which will be placed in the left over pile for other players to use. [X]Done
+                //note: the current player should be able to take a dice out of the leftover pile when they are on this step but the leftover 
+                    //dice should be locked once the player moves past this step. []Done
+        
+        
+        let newLeftOverDice = [...leftOverDice];
+
+        
+        for(let i = 0; i < newAvailableDice.length; i++){
+           
+                if(selectedDice.number > newAvailableDice[i].number){
+                    newLeftOverDice.push(newAvailableDice[i]);
+                }
+                
+            }
+            
+        setLeftOverDice(newLeftOverDice);
+
+        let tempAvailableDice = [...newAvailableDice];
+        
+        tempAvailableDice = tempAvailableDice.filter(d => !newLeftOverDice.includes(d)) 
+
+        setAvailableDices(tempAvailableDice)
+
+        if(action === 1){
+
+            setTurnState(TurnState.RollDice);
+        } else if(action === 3){
+            setTurnState(TurnState.PlaceDie)
+        }
+
+          
+        
+    }
+
 
     function newDice(){
         let tempArr = []
@@ -97,42 +152,6 @@ function GameCard(){
     }
 
 
-    function moveDiceToPlatter(selectedDice, newAvailableDice){
-
-        //here I am seeing if the selected dice(s) have a number that is greater than the ones still available [X]Done
-                //if so then I am disabling the available dice which will be placed in the left over pile for other players to use. [X]Done
-                //note: the current player should be able to take a dice out of the leftover pile when they are on this step but the leftover 
-                    //dice should be locked once the player moves past this step. []Donew
-        
-        
-        let newLeftOverDice = [...leftOverDice];
-
-        
-        for(let i = 0; i < newAvailableDice.length; i++){
-           
-                if(selectedDice.number > newAvailableDice[i].number){
-                    newLeftOverDice.push(newAvailableDice[i]);
-                }
-                
-            }
-            
-        setLeftOverDice(newLeftOverDice);
-
-        let tempAvailableDice = [...newAvailableDice];
-        
-        tempAvailableDice = tempAvailableDice.filter(d => !newLeftOverDice.includes(d)) 
-
-        setAvailableDices(tempAvailableDice)
-
-        
-        //need to now reset available dice to exclude the dice that are in the leftOver state
-        
-
-        setTurnState(TurnState.RollDice);
-            
-        
-    }
-
     const handleDicePlace = (dice) => {
 
         setTurnState(TurnState.RollDice)
@@ -152,13 +171,11 @@ function GameCard(){
             tempArr.push({
                 color: availableColors[i],
                 number: Math.floor(Math.random() * 6) + 1,
-                // isPlaced: false
             })
         }
         setAvailableDices(tempArr)
     }
- 
-    console.log(leftOverDice, selectedDice)
+
 
     useEffect(()=>{
 
