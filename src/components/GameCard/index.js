@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from "react";
 import Container from "react-bootstrap/Container";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button"
 import Card from "react-bootstrap/Card"
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -12,7 +14,8 @@ import OrangeField from "../OrangeField"
 import PurpleField from "../PurpleField";
 import LeftOverField from "../LeftOverField/leftoverfield.js";
 import TurnState from "../../helperfunctions/types";
-import PlayerState from "../../models/playerModel"
+import PlayerState from "../../models/playerModel";
+import {CanSelectDice} from "../../helperfunctions/CheckDice"
 
 
 function GameCard(){   
@@ -24,6 +27,12 @@ function GameCard(){
     const [playerState, setPlayerState] = useState(PlayerState)
     const [wildDice, setWildDice] = useState()
     const [blueDice, setBlueDice] = useState()
+    const [confirmDiceChoice, setConfirmDiceChoice] = useState()
+
+    // This is tracking how many times the player has rolled the dice
+    const [rollNumber, setRollNumber] = useState()
+    // This is tracking how many rounds have been played. Once a certain amount of rounds is reached the game is over. 
+    const [round, setRound] = useState()
 
 
    
@@ -36,23 +45,50 @@ function GameCard(){
         setTurnState(TurnState.SelectDie)
     }
 
+    function onDiceConfirm(){
+        let updatedSelectedDice = [...selectedDice]
+        updatedSelectedDice.push(confirmDiceChoice)
+        setSelectedDice(updatedSelectedDice)
+        let updatedAvailableDices = availableDices.filter(d => d.color !== confirmDiceChoice.color)
+
+
+        setAvailableDices(updatedAvailableDices)
+
+        let actionState = 1
+
+        moveDiceToPlatter(confirmDiceChoice, updatedAvailableDices, actionState)
+        
+        setTurnState(TurnState.RollDice)
+        setConfirmDiceChoice(undefined)
+    }
+
+    function onDiceReject(){
+        setConfirmDiceChoice(undefined)
+    }
+
     function onDiceSelect(dice){
+
         if(turnState === TurnState.SelectDie){
             
-            
-            let updatedSelectedDice = [...selectedDice]
-            updatedSelectedDice.push(dice)
-            setSelectedDice(updatedSelectedDice)
-            let updatedAvailableDices = availableDices.filter(d => d.color !== dice.color)
+            if(CanSelectDice(dice, blueDice, wildDice, playerState)){
+
+                let updatedSelectedDice = [...selectedDice]
+                updatedSelectedDice.push(dice)
+                setSelectedDice(updatedSelectedDice)
+                let updatedAvailableDices = availableDices.filter(d => d.color !== dice.color)
 
 
-            setAvailableDices(updatedAvailableDices)
+                setAvailableDices(updatedAvailableDices)
 
-            let actionState = 1
+                let actionState = 1
 
-            moveDiceToPlatter(dice, updatedAvailableDices, actionState)
-            
-            setTurnState(TurnState.PlaceDie)
+                moveDiceToPlatter(dice, updatedAvailableDices, actionState)
+                
+                setTurnState(TurnState.PlaceDie)
+            } else{
+                setConfirmDiceChoice(dice)
+                console.log("cant place");
+            }
             
             
         } else if (turnState === TurnState.PlaceDie || turnState === TurnState.RollDice){
@@ -178,13 +214,14 @@ function GameCard(){
 
 
     useEffect(()=>{
-
+        
         diceReset()
         
     }, [])
    
     return (
         <>
+             
             <Container className="d-flex justify-content-center mt-5" >
                 <Card style={{background: "rgba(255, 255, 255, 0.25)"}} >
 
@@ -224,6 +261,20 @@ function GameCard(){
                 </Row>
                 </Card>
             </Container>
+
+            <Modal show={confirmDiceChoice !== undefined} onHide={() => console.log()}>
+                <Modal.Body>
+
+                    Do you want to select this dice? There is no place to put it
+                </Modal.Body>
+                <Button onClick={() => onDiceConfirm()}>
+                    Yes
+                </Button>
+                <Button onClick={() => onDiceReject()}>
+                    No
+                </Button>
+                </Modal>
+        
         </>
     )
 }

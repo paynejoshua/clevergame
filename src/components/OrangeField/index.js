@@ -4,14 +4,14 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import DiceElement from "../../helperfunctions/dice"; 
-import {OrangeDiceCheck} from "../../helperfunctions/CheckDice"
+import {CanPlaceOrangeDice, OrangeSquares} from "../../helperfunctions/CheckDice"
 
 function OrangeField(props){
     
-    const OrangeSquares = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    
 
-    const handleClick = (item, index, props) => {
-        if(OrangeDiceCheck(item, index, props)){
+    const handleClick = (index) => {
+        if(CanPlaceOrangeDice(props.lastSelectedDice, props.turnState, props.state, index)){
             let setColorOfDice = {...props.lastSelectedDice}
             setColorOfDice.color = "Orange"
             props.state.push(setColorOfDice)
@@ -31,7 +31,7 @@ function OrangeField(props){
                                        {
                                         props.state.length > index
                                         ? <DiceElement disabledClick={true} dice={props.state[index]}/>
-                                        : <div onClick={() => handleClick(item, index, props)} className={`gameSquare d-inline-block ${OrangeDiceCheck(item, index, props) ? "selectedPulse orangeBorder" : ""}`}></div>
+                                        : <div onClick={() => handleClick(index)} className={`gameSquare d-inline-block ${CanPlaceOrangeDice(props.lastSelectedDice, props.turnState, props.state, index) ? "selectedPulse orangeBorder" : ""}`}></div>
                                         }
                                     </div>
                                    

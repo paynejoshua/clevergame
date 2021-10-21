@@ -4,16 +4,17 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import DiceElement from "../../helperfunctions/dice";
-import {YellowDiceCheck} from "../../helperfunctions/CheckDice"
+import {CanPlaceYellowDice, YellowChoices} from "../../helperfunctions/CheckDice"
+
 
 function YellowField(props){
 
-    const YellowChoices = [3, 6, 5, "X", 2, 1, "X", 5, 1, "X", 2, 4, "X", 3, 4, 6];
+    
 
     const handleClick = (item, index, props) => {
 
 
-        if(YellowDiceCheck(item, props)){
+        if(CanPlaceYellowDice(item, props.turnState, props.lastSelectedDice)){
             let setColorOfDice = {...props.lastSelectedDice};
             setColorOfDice.color = "Yellow";
             setColorOfDice.isPlaced = true;
@@ -37,7 +38,7 @@ function YellowField(props){
                                 : <div
                                 onClick={() => handleClick(item, index, props)} 
                                 style={{fontSize: "2rem"}} 
-                                className={`gameSquare d-flex justify-content-center ${YellowDiceCheck(item, props) ? "selectedPulse yellowBorder" : ""}`}>
+                                className={`gameSquare d-flex justify-content-center ${CanPlaceYellowDice(item, props.turnState, props.lastSelectedDice) ? "selectedPulse yellowBorder" : ""}`}>
                                 {item}
                                </div>  
                                 

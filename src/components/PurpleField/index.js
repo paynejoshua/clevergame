@@ -4,15 +4,15 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import DiceElement from "../../helperfunctions/dice";
-import {PurpleDiceCheck} from "../../helperfunctions/CheckDice"
+import {CanPlacePurpleDice, PurpleSquares} from "../../helperfunctions/CheckDice"
 
 function PurpleField(props){
 
-    const PurpleSquares = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+    
 
 
-    const handleClick = (item, index, props) => {
-        if(PurpleDiceCheck(item, index, props)){
+    const handleClick = (index) => {
+        if(CanPlacePurpleDice(props.lastSelectedDice, props.turnState, props.state, index)){
             let setColorOfDice = {...props.lastSelectedDice}
             setColorOfDice.color = "Purple"
             props.state.push(setColorOfDice)
@@ -32,7 +32,7 @@ function PurpleField(props){
                                     {
                                         props.state.length > index
                                         ? <DiceElement disabledClick={true} dice={props.state[index]}/>
-                                        : <div onClick={() => handleClick(item, index, props)} style={{fontSize: "2rem", textAlign: "center"}} className={`gameSquare d-inline-block ${PurpleDiceCheck(item, index, props) ? "selectedPulse purpleBorder" : ""}`}>{item === 1 ? "" :  <span>></span>}</div>
+                                        : <div onClick={() => handleClick(index)} style={{fontSize: "2rem", textAlign: "center"}} className={`gameSquare d-inline-block ${CanPlacePurpleDice(props.lastSelectedDice, props.turnState, props.state, index) ? "selectedPulse purpleBorder" : ""}`}>{item === 1 ? "" :  <span>></span>}</div>
                                    }
                                         
                                     
