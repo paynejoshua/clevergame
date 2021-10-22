@@ -8,15 +8,12 @@ import {CanPlaceGreenDice, GreenSquares} from "../../helperfunctions/CheckDice"
 
 function GreenField(props){
 
-    
-
-
     const handleClick = (item, index, props) => {
         if(CanPlaceGreenDice(item, props.lastSelectedDice, props.turnState, props.state, index)){
             let setColorOfDice = {...props.lastSelectedDice}
             setColorOfDice.color = "Green"
             props.state.push(setColorOfDice)
-            props.onDicePlaced()
+            props.onDicePlaced(props.lastSelectedDice, "Green")
         }
     }
 

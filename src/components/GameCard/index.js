@@ -15,7 +15,8 @@ import PurpleField from "../PurpleField";
 import LeftOverField from "../LeftOverField/leftoverfield.js";
 import TurnState from "../../helperfunctions/types";
 import PlayerState from "../../models/playerModel";
-import {CanSelectDice} from "../../helperfunctions/CheckDice"
+import {CanSelectDice} from "../../helperfunctions/CheckDice";
+import {WhiteScore, YellowScore, BlueScore, GreenScore} from "../../helperfunctions/FieldScores"
 
 
 function GameCard(){   
@@ -28,19 +29,22 @@ function GameCard(){
     const [wildDice, setWildDice] = useState()
     const [blueDice, setBlueDice] = useState()
     const [confirmDiceChoice, setConfirmDiceChoice] = useState()
-
-    // This is tracking how many times the player has rolled the dice
-    const [rollNumber, setRollNumber] = useState()
-    // This is tracking how many rounds have been played. Once a certain amount of rounds is reached the game is over. 
-    const [round, setRound] = useState()
+    const [rollNumber, setRollNumber] = useState(0)
+    const [round, setRound] = useState(0)
+    const [playerScore, setPlayerScore] = useState(0)
 
 
+   console.log("score", playerScore)
+   console.log("round", round)
    
     
     function onDiceRoll(){
         if(turnState !== TurnState.RollDice){
             return
         }
+
+        setRollNumber(prevRollNumber => prevRollNumber + 1)
+
         newDice()
         setTurnState(TurnState.SelectDie)
     }
@@ -188,16 +192,49 @@ function GameCard(){
     }
 
 
-    const handleDicePlace = (dice) => {
+    const handleDicePlace = (dice, field) => {
+        console.log("dice", dice)
+
+        switch(dice.color){
+            case "White":
+                let tempWhiteScore = WhiteScore(field)
+                setPlayerScore(prevScore => prevScore + tempWhiteScore)
+                break
+            case "Yellow":
+                YellowScore()
+                break
+            case "Blue":
+                let tempBlueScore = BlueScore()
+                setPlayerScore(prevScore => prevScore + tempBlueScore)
+                break
+
+            case "Green":
+                let tempGreenScore = GreenScore()
+                setPlayerScore(prevScore => prevScore + tempGreenScore)
+                break
+            
+            case "Orange":
+                setPlayerScore(prevScore => prevScore + dice.number)
+                break
+            case "Purple":
+                setPlayerScore(prevScore => prevScore + dice.number)
+                break
+            default:
+                break
+        }
 
         setTurnState(TurnState.RollDice)
-        PlayerState.rounds += 1
+        
     }
 
 
     const diceReset = () => {
 
-        PlayerState.rounds = 0
+        if(rollNumber === 3){
+            setRollNumber(0)
+            setRound(prevRound => prevRound + 1)
+        }
+
         setLeftOverDice([])
         setSelectedDice([])
 
@@ -210,6 +247,10 @@ function GameCard(){
             })
         }
         setAvailableDices(tempArr)
+    }
+
+    function resetGame(){
+        window.location.reload(false)
     }
 
 
@@ -229,7 +270,7 @@ function GameCard(){
                 <Row className="mt-5 mb-5">
                     <Col xs={6} sm={6} md={6} lg={6} xl={6} xxl={6} className="d-flex justify-content-center" >
                                 <KeptDice selectedDice={selectedDice} />
-                                <DiceRoller turnState={turnState} onRoll={onDiceRoll} onDiceReset={diceReset} turn={PlayerState.rounds} availableDices={availableDices} onDiceSelect={onDiceSelect} />
+                                <DiceRoller turnState={turnState} onRoll={onDiceRoll} onDiceReset={diceReset} rollNumber={rollNumber} round={round} availableDices={availableDices} onDiceSelect={onDiceSelect} />
                     </Col>
                     
 
@@ -274,6 +315,14 @@ function GameCard(){
                     No
                 </Button>
                 </Modal>
+
+            <Modal show={round === 3} > 
+                    <Modal.Title>Game Over</Modal.Title>
+                <Modal.Body>
+                    Great Game! You scored: {playerScore}
+                </Modal.Body>
+                <Button onClick={resetGame}>Play Again!</Button>
+            </Modal>
         
         </>
     )

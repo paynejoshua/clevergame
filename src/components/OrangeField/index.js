@@ -15,7 +15,7 @@ function OrangeField(props){
             let setColorOfDice = {...props.lastSelectedDice}
             setColorOfDice.color = "Orange"
             props.state.push(setColorOfDice)
-            props.onDicePlaced()
+            props.onDicePlaced(props.lastSelectedDice, "Orange")
         }
     }
 

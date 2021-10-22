@@ -11,7 +11,7 @@ function YellowField(props){
 
     
 
-    const handleClick = (item, index, props) => {
+    const handleClick = (item, index) => {
 
 
         if(CanPlaceYellowDice(item, props.turnState, props.lastSelectedDice)){
@@ -19,7 +19,7 @@ function YellowField(props){
             setColorOfDice.color = "Yellow";
             setColorOfDice.isPlaced = true;
             props.state[index] = setColorOfDice;
-            props.onDicePlaced(item);
+            props.onDicePlaced(item, "Yellow");
         }
     }
 
@@ -36,7 +36,7 @@ function YellowField(props){
                                 props.state.length > index && props.state[index]
                                 ?  <DiceElement disabledClick={true} dice={props.state[index]} />
                                 : <div
-                                onClick={() => handleClick(item, index, props)} 
+                                onClick={() => handleClick(item, index)} 
                                 style={{fontSize: "2rem"}} 
                                 className={`gameSquare d-flex justify-content-center ${CanPlaceYellowDice(item, props.turnState, props.lastSelectedDice) ? "selectedPulse yellowBorder" : ""}`}>
                                 {item}

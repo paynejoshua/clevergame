@@ -16,7 +16,7 @@ function BlueField(props){
             setColorOfDice.color = "Blue"
             setColorOfDice.index = index
             props.state[index] = setColorOfDice
-            props.onDicePlaced()
+            props.onDicePlaced(props.lastSelectedDice, "Blue")
         }
     }
 
