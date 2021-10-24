@@ -17,8 +17,37 @@ export const WhiteScore = (field) => {
     }
 }
 
+//the following is a map of the indexes for the yellow field that needs to be met for points
+//0,4,8 (10) | 1,5,13 (14)| 2,10,14 (16)| 7,11,15 (20)
+
 export const YellowScore = () => {
-    return 0
+    
+    if(
+        PlayerState.yellowState[0] !== undefined 
+        && PlayerState.yellowState[4] !== undefined
+        && PlayerState.yellowState[8] !== undefined ){
+            return 10
+        } else if (
+            PlayerState.yellowState[1] !== undefined 
+            && PlayerState.yellowState[5] !== undefined
+            && PlayerState.yellowState[13] !== undefined
+        ) {
+            return 14
+        } else if(
+            PlayerState.yellowState[2] !== undefined 
+            && PlayerState.yellowState[10] !== undefined
+            && PlayerState.yellowState[14] !== undefined
+        ){
+            return 16
+        } else if(
+            PlayerState.yellowState[7] !== undefined 
+            && PlayerState.yellowState[11] !== undefined
+            && PlayerState.yellowState[15] !== undefined
+        ){
+            return 20
+        } else{
+            return 0
+        }
 }
 
 

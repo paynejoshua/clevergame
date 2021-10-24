@@ -1,11 +1,10 @@
 To Do:
-[x] Keep track of how many times the player has rolled the dice. 
-    [x] If 3 then move remaining dice in available field to left over field
-[] Create score tracking element
-[x] If blue dice is selected then add up number of white dice as well
+
 [] Create a way to track who's turn it is for up to 3 players
 [] Create a way to track which round it is
-    [] Rounds are determined by amount of players
+    [] 4 rounds for 4+ players
+    [] 5 Rounds for 3 players
+    [] 6 Rounds for 1-2 players
 [] Create a way to track special powers for each player (foxes, +1's, roll again, double points, triple points,
     wild cards for each color, round special powers)
 [] Create an animation for dice rolling
@@ -19,6 +18,12 @@ Finished:
 [x] Create a conditional statement that doesn't allow the player to roll the dice again
 until they have selected which ones they want
 [x] Only roll the dice that haven't been selected
+[x] Keep track of how many times the player has rolled the dice. 
+    [x] If 3 then move remaining dice in available field to left over field
+[x] Create score tracking element
+[x] If blue dice is selected then add up number of white dice as well
+[x] Create a way to track yellow field score
+
 
 
 

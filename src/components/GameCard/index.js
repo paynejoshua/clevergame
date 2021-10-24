@@ -201,7 +201,9 @@ function GameCard(){
                 setPlayerScore(prevScore => prevScore + tempWhiteScore)
                 break
             case "Yellow":
-                YellowScore()
+                console.log("yellow array", PlayerState.yellowState)
+                let tempYellowScore = YellowScore()
+                setPlayerScore(prevScore => prevScore + tempYellowScore)
                 break
             case "Blue":
                 let tempBlueScore = BlueScore()
@@ -266,6 +268,12 @@ function GameCard(){
             <Container className="d-flex justify-content-center mt-5" >
                 <Card style={{background: "rgba(255, 255, 255, 0.25)"}} >
 
+                <Row>
+                    <Col>
+                        <Card.Title style={{color: "white"}}>Score: {playerScore}</Card.Title>
+                        <Card.Title style={{color: "white"}}>Round: {round}</Card.Title>
+                    </Col>
+                </Row>
                 
                 <Row className="mt-5 mb-5">
                     <Col xs={6} sm={6} md={6} lg={6} xl={6} xxl={6} className="d-flex justify-content-center" >
@@ -316,7 +324,7 @@ function GameCard(){
                 </Button>
                 </Modal>
 
-            <Modal show={round === 3} > 
+            <Modal show={round === 100} > 
                     <Modal.Title>Game Over</Modal.Title>
                 <Modal.Body>
                     Great Game! You scored: {playerScore}

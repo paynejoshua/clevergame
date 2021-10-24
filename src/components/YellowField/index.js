@@ -19,7 +19,7 @@ function YellowField(props){
             setColorOfDice.color = "Yellow";
             setColorOfDice.isPlaced = true;
             props.state[index] = setColorOfDice;
-            props.onDicePlaced(item, "Yellow");
+            props.onDicePlaced(props.lastSelectedDice, "Yellow");
         }
     }
 
