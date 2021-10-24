@@ -1,6 +1,6 @@
 import PlayerState from "../models/playerModel"
 
-export const WhiteScore = (field) => {
+export const WhiteScore = (field, index) => {
     switch(field){
         case "Yellow":
             return YellowScore()
@@ -9,7 +9,7 @@ export const WhiteScore = (field) => {
         case "Green":
             return GreenScore()
         case "Orange":
-            return PlayerState.orangeState[PlayerState.orangeState.length -1].number
+            return OrangeScore(index)
         case "Purple":
             return PlayerState.purpleState[PlayerState.purpleState.length -1].number
         default:
@@ -128,4 +128,19 @@ export const GreenScore = () => {
             
     }
 
+}
+
+export const OrangeScore = (index) =>{
+    console.log(PlayerState.orangeState[1])
+    if(index === 3){
+        return PlayerState.orangeState[index].number * 2
+    } else if(index === 6){
+        return PlayerState.orangeState[index].number * 2
+    }else if(index === 8){
+        return PlayerState.orangeState[index].number * 2
+    }else if(index === 10){
+        return PlayerState.orangeState[index].number * 3
+    } else {
+        return PlayerState.orangeState[index].number
+    }
 }

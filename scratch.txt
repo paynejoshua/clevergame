@@ -1,5 +1,8 @@
 To Do:
 
+[] Set up doubling and tripling in Orange Field 
+[] Set up Power Ups Helper Function
+[] Create a way to continue rolling even if only 1 or 2 dice have been selected
 [] Create a way to track who's turn it is for up to 3 players
 [] Create a way to track which round it is
     [] 4 rounds for 4+ players

@@ -16,7 +16,7 @@ import LeftOverField from "../LeftOverField/leftoverfield.js";
 import TurnState from "../../helperfunctions/types";
 import PlayerState from "../../models/playerModel";
 import {CanSelectDice} from "../../helperfunctions/CheckDice";
-import {WhiteScore, YellowScore, BlueScore, GreenScore} from "../../helperfunctions/FieldScores"
+import {WhiteScore, YellowScore, BlueScore, GreenScore, OrangeScore} from "../../helperfunctions/FieldScores"
 
 
 function GameCard(){   
@@ -32,10 +32,10 @@ function GameCard(){
     const [rollNumber, setRollNumber] = useState(0)
     const [round, setRound] = useState(0)
     const [playerScore, setPlayerScore] = useState(0)
+    const [thisGamesRounds, setThisGamesRounds] = useState()
 
 
-   console.log("score", playerScore)
-   console.log("round", round)
+  
    
     
     function onDiceRoll(){
@@ -91,13 +91,13 @@ function GameCard(){
                 setTurnState(TurnState.PlaceDie)
             } else{
                 setConfirmDiceChoice(dice)
-                console.log("cant place");
+                
             }
             
             
         } else if (turnState === TurnState.PlaceDie || turnState === TurnState.RollDice){
                 //this means the player is swapping out the last chosen die for a different die
-                console.log("leftover turn state", turnState)
+                
 
                 let previousDie = selectedDice[selectedDice.length - 1]
 
@@ -192,16 +192,15 @@ function GameCard(){
     }
 
 
-    const handleDicePlace = (dice, field) => {
-        console.log("dice", dice)
+    const handleDicePlace = (dice, field, index) => {
+        
 
         switch(dice.color){
             case "White":
-                let tempWhiteScore = WhiteScore(field)
+                let tempWhiteScore = WhiteScore(field, index)
                 setPlayerScore(prevScore => prevScore + tempWhiteScore)
                 break
             case "Yellow":
-                console.log("yellow array", PlayerState.yellowState)
                 let tempYellowScore = YellowScore()
                 setPlayerScore(prevScore => prevScore + tempYellowScore)
                 break
@@ -216,7 +215,8 @@ function GameCard(){
                 break
             
             case "Orange":
-                setPlayerScore(prevScore => prevScore + dice.number)
+                let tempOrangeScore = OrangeScore(index)
+                setPlayerScore(prevScore => prevScore + tempOrangeScore)
                 break
             case "Purple":
                 setPlayerScore(prevScore => prevScore + dice.number)
@@ -255,9 +255,12 @@ function GameCard(){
         window.location.reload(false)
     }
 
+    function initRounds(){
+        setThisGamesRounds(100)
+    }
 
     useEffect(()=>{
-        
+        initRounds()
         diceReset()
         
     }, [])
@@ -271,7 +274,7 @@ function GameCard(){
                 <Row>
                     <Col>
                         <Card.Title style={{color: "white"}}>Score: {playerScore}</Card.Title>
-                        <Card.Title style={{color: "white"}}>Round: {round}</Card.Title>
+                        <Card.Title style={{color: "white"}}>Round: {round} / {thisGamesRounds}</Card.Title>
                     </Col>
                 </Row>
                 
@@ -311,7 +314,8 @@ function GameCard(){
                 </Card>
             </Container>
 
-            <Modal show={confirmDiceChoice !== undefined} onHide={() => console.log()}>
+            <Modal show={confirmDiceChoice !== undefined} onHide={() => onDiceReject()}>
+            {/* <Modal show={confirmDiceChoice !== undefined} onHide={() => console.log()}> */}
                 <Modal.Body>
 
                     Do you want to select this dice? There is no place to put it
@@ -324,7 +328,7 @@ function GameCard(){
                 </Button>
                 </Modal>
 
-            <Modal show={round === 100} > 
+            <Modal show={round === thisGamesRounds} > 
                     <Modal.Title>Game Over</Modal.Title>
                 <Modal.Body>
                     Great Game! You scored: {playerScore}

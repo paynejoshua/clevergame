@@ -15,7 +15,7 @@ function OrangeField(props){
             let setColorOfDice = {...props.lastSelectedDice}
             setColorOfDice.color = "Orange"
             props.state.push(setColorOfDice)
-            props.onDicePlaced(props.lastSelectedDice, "Orange")
+            props.onDicePlaced(props.lastSelectedDice, "Orange", index)
         }
     }
 
@@ -31,7 +31,16 @@ function OrangeField(props){
                                        {
                                         props.state.length > index
                                         ? <DiceElement disabledClick={true} dice={props.state[index]}/>
-                                        : <div onClick={() => handleClick(index)} className={`gameSquare d-inline-block ${CanPlaceOrangeDice(props.lastSelectedDice, props.turnState, props.state, index) ? "selectedPulse orangeBorder" : ""}`}></div>
+                                        : <div
+                                            onClick={() => handleClick(index)} 
+                                            className={`gameSquare d-inline-block ${CanPlaceOrangeDice(props.lastSelectedDice, props.turnState, props.state, index) ? "selectedPulse orangeBorder" : ""}`}
+                                            style={{textAlign: "center", fontSize: "2rem", color: "orange", fontWeight: "bold"}} >
+                                                {
+                                                index === 3 ? "x2"
+                                                : index === 6 ? "x2"
+                                                : index === 8 ? "x2"
+                                                : index === 10 ? "x3" : "" } 
+                                            </div>
                                         }
                                     </div>
                                    
