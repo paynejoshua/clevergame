@@ -1,6 +1,6 @@
 import React from "react";
 import DiceShortCut from "../../components/DiceShortCut";
-import TurnState from "../types";
+import {TurnState} from "../types";
 
 
 function DiceElement(props){

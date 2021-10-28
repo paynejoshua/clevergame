@@ -2,7 +2,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import DiceSet from "../DiceSet";
 import Button from "react-bootstrap/Button"
-import TurnState from "../../helperfunctions/types"
+import {TurnState} from "../../helperfunctions/types"
 
 function DiceRoller(props){
     

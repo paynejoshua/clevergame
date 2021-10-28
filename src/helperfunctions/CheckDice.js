@@ -1,4 +1,4 @@
-import TurnState from "../helperfunctions/types"
+import {TurnState} from "../helperfunctions/types"
 
 export const YellowChoices = [3, 6, 5, "X", 2, 1, "X", 5, 1, "X", 2, 4, "X", 3, 4, 6];
 export const BlueChoices = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];

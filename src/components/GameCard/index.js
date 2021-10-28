@@ -13,10 +13,10 @@ import GreenField from "../GreenField"
 import OrangeField from "../OrangeField"
 import PurpleField from "../PurpleField";
 import LeftOverField from "../LeftOverField/leftoverfield.js";
-import TurnState from "../../helperfunctions/types";
+import {TurnState, Color} from "../../helperfunctions/types";
 import PlayerState from "../../models/playerModel";
 import {CanSelectDice} from "../../helperfunctions/CheckDice";
-import {WhiteScore, YellowScore, BlueScore, GreenScore, OrangeScore} from "../../helperfunctions/FieldScores"
+import {CalculateScore} from "../../helperfunctions/FieldScores"
 
 
 function GameCard(){   
@@ -194,36 +194,7 @@ function GameCard(){
 
     const handleDicePlace = (dice, field, index) => {
         
-
-        switch(dice.color){
-            case "White":
-                let tempWhiteScore = WhiteScore(field, index)
-                setPlayerScore(prevScore => prevScore + tempWhiteScore)
-                break
-            case "Yellow":
-                let tempYellowScore = YellowScore()
-                setPlayerScore(prevScore => prevScore + tempYellowScore)
-                break
-            case "Blue":
-                let tempBlueScore = BlueScore()
-                setPlayerScore(prevScore => prevScore + tempBlueScore)
-                break
-
-            case "Green":
-                let tempGreenScore = GreenScore()
-                setPlayerScore(prevScore => prevScore + tempGreenScore)
-                break
-            
-            case "Orange":
-                let tempOrangeScore = OrangeScore(index)
-                setPlayerScore(prevScore => prevScore + tempOrangeScore)
-                break
-            case "Purple":
-                setPlayerScore(prevScore => prevScore + dice.number)
-                break
-            default:
-                break
-        }
+        setPlayerScore(CalculateScore(playerState))
 
         setTurnState(TurnState.RollDice)
         
@@ -240,7 +211,7 @@ function GameCard(){
         setLeftOverDice([])
         setSelectedDice([])
 
-        const availableColors = ["Yellow", "Blue", "White", "Green", "Orange", "Purple"]
+        const availableColors = [Color.White, Color.Yellow, Color.Blue, Color.Green, Color.Orange, Color.Purple]
         let tempArr = []
         for(let i = 0; i < availableColors.length; i++){
             tempArr.push({
