@@ -77,16 +77,15 @@ function GameCard(){
             if(CanSelectDice(dice, blueDice, wildDice, playerState)){
 
                 let updatedSelectedDice = [...selectedDice]
+                    
                 updatedSelectedDice.push(dice)
+
                 setSelectedDice(updatedSelectedDice)
                 let updatedAvailableDices = availableDices.filter(d => d.color !== dice.color)
 
-
                 setAvailableDices(updatedAvailableDices)
 
-                let actionState = 1
-
-                moveDiceToPlatter(dice, updatedAvailableDices, actionState)
+                markDiceForPlatter(dice, updatedAvailableDices)
                 
                 setTurnState(TurnState.PlaceDie)
             } else{
@@ -104,6 +103,8 @@ function GameCard(){
 
                 let tempSelectedDie = selectedDice.filter(d => d.color !== previousDie.color)
 
+                //the selected dice can never be marked for platter
+                dice.markedForPlatter = false
                 
                 tempSelectedDie.push(dice)
 
@@ -114,25 +115,35 @@ function GameCard(){
                 tempAvailableDice.push(previousDie)
 
 
-                setAvailableDices(tempAvailableDice)
-
-                let actionState;
-
-                if(turnState === TurnState.RollDice){
-                    actionState = 3
-                } else if(turnState === TurnState.PlaceDice){
-                    actionState = 1
-                }
+                setAvailableDices(tempAvailableDice)                
 
                 
-                moveDiceToPlatter(dice, tempAvailableDice, actionState)
+                markDiceForPlatter(dice, tempAvailableDice)
 
         }
 
        
     }
 
-    function moveDiceToPlatter(selectedDice, newAvailableDice, action){
+    function markDiceForPlatter(newSelectedDice, newAvailableDice){
+
+
+        let tempAvailableDice = [...newAvailableDice]
+
+        for(let i = 0; i < tempAvailableDice.length; i++){
+           
+            if(newSelectedDice.number > tempAvailableDice[i].number){
+                tempAvailableDice[i].markedForPlatter = true
+            } else {
+                tempAvailableDice[i].markedForPlatter = false
+            }
+            
+        }
+
+        setAvailableDices(tempAvailableDice)
+    }
+
+    function moveDiceToPlatter(selectedDice, newAvailableDice){
 
         //here I am seeing if the selected dice(s) have a number that is greater than the ones still available [X]Done
                 //if so then I am disabling the available dice which will be placed in the left over pile for other players to use. [X]Done
@@ -158,15 +169,6 @@ function GameCard(){
         tempAvailableDice = tempAvailableDice.filter(d => !newLeftOverDice.includes(d)) 
 
         setAvailableDices(tempAvailableDice)
-
-        if(action === 1){
-
-            setTurnState(TurnState.RollDice);
-        } else if(action === 3){
-            setTurnState(TurnState.PlaceDie)
-        }
-
-          
         
     }
 
@@ -195,6 +197,7 @@ function GameCard(){
     const handleDicePlace = (dice, field, index) => {
         
         setPlayerScore(CalculateScore(playerState))
+        moveDiceToPlatter(dice, availableDices)
 
         setTurnState(TurnState.RollDice)
         
@@ -227,7 +230,7 @@ function GameCard(){
     }
 
     function initRounds(){
-        setThisGamesRounds(100)
+        setThisGamesRounds(1000)
     }
 
     useEffect(()=>{

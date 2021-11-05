@@ -58,13 +58,19 @@ body {
   display: inline-block;
 }
 
+.markForPlatter {
+  border-color: red;
+}
+
+.diceBorder {
+  border-color: black;
+}
 
 .dice {
   width: 4rem;
   height: 4rem;
   padding: 4px;
   margin-top: 5px;
-  border-color: black;
   border-style: solid;
   border-radius: 10%;
 }

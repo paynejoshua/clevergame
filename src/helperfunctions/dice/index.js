@@ -28,7 +28,7 @@ function DiceElement(props){
         <img 
         src={getDiceImage()} 
         alt={`${props.dice.number} dice`} 
-        className={`dice ${props.turnState === TurnState.SelectDie ? 'selectedPulse' : ""} ${props.disabledClick && 'nonSelectable'}`} 
+        className={`dice ${props.dice.markedForPlatter ? 'markForPlatter' : 'diceBorder'}  ${props.turnState === TurnState.SelectDie ? 'selectedPulse' : ""} ${props.disabledClick ? 'nonSelectable' : ''}`} 
         onClick={() => props.onDiceSelect(props.dice)} 
         style={{backgroundColor: props.dice.color}} />
            }
