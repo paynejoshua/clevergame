@@ -5,6 +5,7 @@ import Button from "react-bootstrap/Button"
 import Card from "react-bootstrap/Card"
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Toast from "react-bootstrap/Toast"
 import KeptDice from "../KeptDice";
 import DiceRoller from "../DiceRoller"
 import YellowField from "../YellowField";
@@ -33,11 +34,9 @@ function GameCard(){
     const [round, setRound] = useState(0)
     const [playerScore, setPlayerScore] = useState(0)
     const [thisGamesRounds, setThisGamesRounds] = useState()
-
-
-  
-   
+    const [showToast, setShowToast] = useState(false)
     
+
     function onDiceRoll(){
         if(turnState !== TurnState.RollDice){
             return
@@ -127,17 +126,23 @@ function GameCard(){
 
     function markDiceForPlatter(newSelectedDice, newAvailableDice){
 
-
         let tempAvailableDice = [...newAvailableDice]
+        
+        let count = 0
 
         for(let i = 0; i < tempAvailableDice.length; i++){
            
             if(newSelectedDice.number > tempAvailableDice[i].number){
                 tempAvailableDice[i].markedForPlatter = true
+                count++
             } else {
                 tempAvailableDice[i].markedForPlatter = false
             }
             
+        }
+
+        if(count > 0){
+            setShowToast(true)
         }
 
         setAvailableDices(tempAvailableDice)
@@ -161,6 +166,8 @@ function GameCard(){
                 }
                 
             }
+        
+        
             
         setLeftOverDice(newLeftOverDice);
 
@@ -241,6 +248,17 @@ function GameCard(){
    
     return (
         <>
+
+<Toast onClose={() => setShowToast(false)} show={showToast} delay={50000} autohide position={'middle-end'}>
+                    
+                        <Toast.Header>Good choice!</Toast.Header>
+                        <Toast.Body>
+                            Just be aware that the dice in red will be moved
+                            to the left over pile. You can still select these dice as
+                            your choice if you want. Just make sure to make the
+                            most clever choice.
+                        </Toast.Body>
+                    </Toast>
              
             <Container className="d-flex justify-content-center mt-5" >
                 <Card style={{background: "rgba(255, 255, 255, 0.25)"}} >
@@ -253,6 +271,7 @@ function GameCard(){
                 </Row>
                 
                 <Row className="mt-5 mb-5">
+                   
                     <Col xs={6} sm={6} md={6} lg={6} xl={6} xxl={6} className="d-flex justify-content-center" >
                                 <KeptDice selectedDice={selectedDice} />
                                 <DiceRoller turnState={turnState} onRoll={onDiceRoll} onDiceReset={diceReset} rollNumber={rollNumber} round={round} availableDices={availableDices} onDiceSelect={onDiceSelect} />
