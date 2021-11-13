@@ -268,7 +268,7 @@ function GameCard(){
                 closeOnClick
             />   
             <Container className="d-flex justify-content-center mt-5" >
-                <Card style={{background: "rgba(255, 255, 255, 0.25)"}} >
+                <Card style={{background: "rgba(255, 255, 255, 0.25)", width: "100%", height: "auto"}} >
 
                 <Row>
                     <Col>
