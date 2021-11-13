@@ -5,7 +5,6 @@ import Button from "react-bootstrap/Button"
 import Card from "react-bootstrap/Card"
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Toast from "react-bootstrap/Toast"
 import KeptDice from "../KeptDice";
 import DiceRoller from "../DiceRoller"
 import YellowField from "../YellowField";
@@ -17,7 +16,9 @@ import LeftOverField from "../LeftOverField/leftoverfield.js";
 import {TurnState, Color} from "../../helperfunctions/types";
 import PlayerState from "../../models/playerModel";
 import {CanSelectDice} from "../../helperfunctions/CheckDice";
-import {CalculateScore} from "../../helperfunctions/FieldScores"
+import {CalculateScore} from "../../helperfunctions/FieldScores";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function GameCard(){   
@@ -34,7 +35,7 @@ function GameCard(){
     const [round, setRound] = useState(0)
     const [playerScore, setPlayerScore] = useState(0)
     const [thisGamesRounds, setThisGamesRounds] = useState()
-    const [showToast, setShowToast] = useState(false)
+    
     
 
     function onDiceRoll(){
@@ -71,6 +72,8 @@ function GameCard(){
 
     function onDiceSelect(dice){
 
+        // TODO: Consolidate duplicate code between SelectDie and PlaceDie
+
         if(turnState === TurnState.SelectDie){
             
             if(CanSelectDice(dice, blueDice, wildDice, playerState)){
@@ -93,31 +96,36 @@ function GameCard(){
             }
             
             
-        } else if (turnState === TurnState.PlaceDie || turnState === TurnState.RollDice){
+        } else if (turnState === TurnState.PlaceDie){
                 //this means the player is swapping out the last chosen die for a different die
                 
-
+                // Undo previous selected die
                 let previousDie = selectedDice[selectedDice.length - 1]
-
-
                 let tempSelectedDie = selectedDice.filter(d => d.color !== previousDie.color)
 
                 //the selected dice can never be marked for platter
-                dice.markedForPlatter = false
-                
-                tempSelectedDie.push(dice)
+                dice.markedForPlatter = false;
 
 
-                setSelectedDice(tempSelectedDie)
+                // Select the new die instead
+                if(CanSelectDice(dice, blueDice, wildDice, playerState)){
+                    tempSelectedDie.push(dice)
 
-                let tempAvailableDice = availableDices.filter(d => d.color !== dice.color)
-                tempAvailableDice.push(previousDie)
+
+                    setSelectedDice(tempSelectedDie)
+
+                    let tempAvailableDice = availableDices.filter(d => d.color !== dice.color)
+                    tempAvailableDice.push(previousDie)
 
 
-                setAvailableDices(tempAvailableDice)                
+                    setAvailableDices(tempAvailableDice)                
 
-                
-                markDiceForPlatter(dice, tempAvailableDice)
+                    
+                    markDiceForPlatter(dice, tempAvailableDice)
+                } else{
+                    setConfirmDiceChoice(dice)
+                    
+                }
 
         }
 
@@ -141,9 +149,14 @@ function GameCard(){
             
         }
 
+        
         if(count > 0){
-            setShowToast(true)
+            toast("Just be aware that the dice in red will be moved " +
+            "to the left over pile. You can still select these dice as " +
+            "your choice if you want. Just make sure to make the " +
+            "most clever choice.")
         }
+      
 
         setAvailableDices(tempAvailableDice)
     }
@@ -213,10 +226,10 @@ function GameCard(){
 
     const diceReset = () => {
 
-        if(rollNumber === 3){
-            setRollNumber(0)
-            setRound(prevRound => prevRound + 1)
-        }
+     
+        setRollNumber(0)
+        setRound(prevRound => prevRound + 1)
+        
 
         setLeftOverDice([])
         setSelectedDice([])
@@ -237,7 +250,7 @@ function GameCard(){
     }
 
     function initRounds(){
-        setThisGamesRounds(1000)
+        setThisGamesRounds(6)
     }
 
     useEffect(()=>{
@@ -248,18 +261,12 @@ function GameCard(){
    
     return (
         <>
-
-<Toast onClose={() => setShowToast(false)} show={showToast} delay={50000} autohide position={'middle-end'}>
-                    
-                        <Toast.Header>Good choice!</Toast.Header>
-                        <Toast.Body>
-                            Just be aware that the dice in red will be moved
-                            to the left over pile. You can still select these dice as
-                            your choice if you want. Just make sure to make the
-                            most clever choice.
-                        </Toast.Body>
-                    </Toast>
-             
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                pauseOnHover
+                closeOnClick
+            />   
             <Container className="d-flex justify-content-center mt-5" >
                 <Card style={{background: "rgba(255, 255, 255, 0.25)"}} >
 
@@ -321,7 +328,7 @@ function GameCard(){
                 </Button>
                 </Modal>
 
-            <Modal show={round === thisGamesRounds} > 
+            <Modal show={round > thisGamesRounds} > 
                     <Modal.Title>Game Over</Modal.Title>
                 <Modal.Body>
                     Great Game! You scored: {playerScore}

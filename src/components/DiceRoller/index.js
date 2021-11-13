@@ -6,6 +6,10 @@ import {TurnState} from "../../helperfunctions/types"
 
 function DiceRoller(props){
     
+    const canRoll = () => {
+        return(props.availableDices.length > 0 && props.rollNumber < 3)
+    }
+
     return(
         <>
             
@@ -17,7 +21,7 @@ function DiceRoller(props){
                         <Button 
                         disabled={props.turnState !== TurnState.RollDice} 
                         className={`mt-2 ${props.turnState === TurnState.RollDice ? "selectedPulse" : ""}`} 
-                        onClick={props.rollNumber !== 3 ? props.onRoll  : props.onDiceReset}>{props.rollNumber !== 3 ? "Roll Dice"  : "Reset Dice"}</Button>
+                        onClick={canRoll() ? props.onRoll  : props.onDiceReset}>{canRoll() ? "Roll Dice"  : "Reset Dice"}</Button>
                     </div>
 
                 </Card.Body>
