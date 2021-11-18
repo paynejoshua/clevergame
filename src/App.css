@@ -60,7 +60,7 @@ body {
 
 .markForPlatter {
   border-color: red;
-  opacity: 50%;
+  opacity: .5;
 }
 
 .diceBorder {
