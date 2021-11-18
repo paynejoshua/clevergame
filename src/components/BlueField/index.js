@@ -23,7 +23,7 @@ function BlueField(props){
     return(
         <>
             <Container className="mt-3">
-                <Card style={{width: "25rem", height: "15rem", borderColor: "#0af", borderWidth: "3px"}}>
+                <Card style={{height: "15rem", borderColor: "#0af", borderWidth: "3px"}}>
                     <Row>
                         {BlueChoices.map((item, index) =>{
                             return(

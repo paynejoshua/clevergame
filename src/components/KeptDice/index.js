@@ -12,23 +12,23 @@ function KeptDice(props){
     return (
         <>
            
-            <Row>
+   
                 {[...Array(3)].map((item, index) => {
                     return (
-                        <Col key={index}>
+                        <div key={index} >
                             {props.selectedDice.length > index
                                 ?
                                 <DiceElement dice={props.selectedDice[index]}/>
                                 : <div className="gameSquare" style={{ backgroundColor: "white" }}>{}</div>
 
                             }
-
-                        </Col>
+                        </div>
+                      
                     )
 
                 })
                 }
-            </Row>
+         
             
 
         </>

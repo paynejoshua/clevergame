@@ -7,9 +7,6 @@ import GameCard from "./components/GameCard"
 function App() {
   return (
     <div>
-      <Jumbotron fluid className="d-flex justify-content-center">
-        <h1 style={{color: "white"}}>Clever Game</h1>
-      </Jumbotron>
         <GameCard />
     </div>
   );

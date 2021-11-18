@@ -14,8 +14,12 @@ function DiceSet(props){
             <Row>
                 {dices.map((item, index) =>
                     
-                    <Col key={index}>
-                        <Dice turnState={props.turnState} onDiceSelect={props.onDiceSelect} dice={item}/>
+                    <Col xs={4} key={index}>
+                        <div className="d-flex justify-content-center">
+
+                            <Dice turnState={props.turnState} onDiceSelect={props.onDiceSelect} dice={item}/>
+                        </div>
+                    
                     </Col>
 
                     )}

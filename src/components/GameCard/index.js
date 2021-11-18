@@ -267,52 +267,58 @@ function GameCard(){
                 pauseOnHover
                 closeOnClick
             />   
-            <Container className="d-flex justify-content-center mt-5" >
+            
                 <Card style={{background: "rgba(255, 255, 255, 0.25)", width: "100%", height: "auto"}} >
 
-                <Row>
-                    <Col>
-                        <Card.Title style={{color: "white"}}>Score: {playerScore}</Card.Title>
-                        <Card.Title style={{color: "white"}}>Round: {round} / {thisGamesRounds}</Card.Title>
-                    </Col>
-                </Row>
-                
-                <Row className="mt-5 mb-5">
-                   
-                    <Col xs={6} sm={6} md={6} lg={6} xl={6} xxl={6} className="d-flex justify-content-center" >
-                                <KeptDice selectedDice={selectedDice} />
+                    <Row>
+                        <Col>
+                            <Card.Title className="text-center" style={{color: "white", fontSize: "4rem"}}>Clever Game</Card.Title>
+                            <Card.Title style={{color: "white"}}>Score: {playerScore}</Card.Title>
+                            <Card.Title style={{color: "white"}}>Round: {round} / {thisGamesRounds}</Card.Title>
+                        </Col>
+                    </Row>
+                    
+                    <Row className="mt-5 mb-5">
+                    
+                        <Col xs={12} md={6} lg={6} className="d-flex flex-row">
+                               
+                                <div>
+                                    <KeptDice selectedDice={selectedDice} />
+                                </div>
+                        
                                 <DiceRoller turnState={turnState} onRoll={onDiceRoll} onDiceReset={diceReset} rollNumber={rollNumber} round={round} availableDices={availableDices} onDiceSelect={onDiceSelect} />
-                    </Col>
-                    
 
-                    <Col xs={6} sm={6} md={6} lg={6} xl={6} xxl={6} className="d-flex justify-content-center">
+                              
+                        </Col>
+                        
+                        <Col xs={12} md={6} lg={6} className="d-flex justify-content-center">
                                 <LeftOverField leftOverDice={leftOverDice} />
-                    </Col>
+                        
+                        </Col>
 
-                    <Col xs={6} sm={6} md={6} lg={6} xl={6} xxl={6}>
-                                <YellowField turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length -1]} state={playerState.yellowState} onDicePlaced={handleDicePlace}/>
-                    </Col>
+                        <Col xs={12} sm={12} md={12} lg={6} xl={6} xxl={6}>
+                                    <YellowField turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length -1]} state={playerState.yellowState} onDicePlaced={handleDicePlace}/>
+                        </Col>
 
-                    <Col xs={6} sm={6} md={6} lg={6} xl={6} xxl={6}>
-                    
-                                <BlueField whiteDice={wildDice} blueDice={blueDice} turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length -1]} state={playerState.blueState} onDicePlaced={handleDicePlace} />
-                    </Col>
-                    <Col xs={12} sm={12} md={12} lg={12} xl={12} xxl={12}>
-                    
-                                <GreenField turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length -1]} state={playerState.greenState} onDicePlaced={handleDicePlace} />
-                    </Col>
-                    <Col xs={12} sm={12} md={12} lg={12} xl={12} xxl={12}>
-                    
-                                <OrangeField turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length -1]} state={playerState.orangeState} onDicePlaced={handleDicePlace} />
-                    </Col>
-                    <Col xs={12} sm={12} md={12} lg={12} xl={12} xxl={12}>
-                    
-                                <PurpleField turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length -1]} state={playerState.purpleState} onDicePlaced={handleDicePlace}/>
-                    </Col>
+                        <Col xs={12} sm={12} md={12} lg={6} xl={6} xxl={6}>
+                        
+                                    <BlueField whiteDice={wildDice} blueDice={blueDice} turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length -1]} state={playerState.blueState} onDicePlaced={handleDicePlace} />
+                        </Col>
+                        <Col xs={12} sm={12} md={12} lg={12} xl={12} xxl={12}>
+                        
+                                    <GreenField turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length -1]} state={playerState.greenState} onDicePlaced={handleDicePlace} />
+                        </Col>
+                        <Col xs={12} sm={12} md={12} lg={12} xl={12} xxl={12}>
+                        
+                                    <OrangeField turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length -1]} state={playerState.orangeState} onDicePlaced={handleDicePlace} />
+                        </Col>
+                        <Col xs={12} sm={12} md={12} lg={12} xl={12} xxl={12}>
+                        
+                                    <PurpleField turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length -1]} state={playerState.purpleState} onDicePlaced={handleDicePlace}/>
+                        </Col>
 
-                </Row>
+                    </Row>
                 </Card>
-            </Container>
 
             <Modal show={confirmDiceChoice !== undefined} onHide={() => onDiceReject()}>
             {/* <Modal show={confirmDiceChoice !== undefined} onHide={() => console.log()}> */}

@@ -26,7 +26,7 @@ function YellowField(props){
     return(
         
             <Container onClick={props.onClick} className="mt-3">
-                <Card style={{width: "25rem", borderColor: "#ffd900", borderWidth: "3px"}}>
+                <Card style={{borderColor: "#ffd900", borderWidth: "3px"}}>
                     <Row>
                         {YellowChoices.map((item, index) =>{
                             return(

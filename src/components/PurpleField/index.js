@@ -25,10 +25,9 @@ function PurpleField(props){
             <Container className="mt-3">
                 <Card style={{borderColor: "purple", borderWidth: "3px"}}>
                     <Row>
-                        <Col className="d-flex justify-content-evenly">                        
                             {PurpleSquares.map((item, index) => {
                                 return(
-                                   <div key={item}>
+                                   <Col xs={3} md={2} lg={1} key={item}>
                                     {
                                         props.state.length > index
                                         ? <DiceElement disabledClick={true} dice={props.state[index]}/>
@@ -36,14 +35,14 @@ function PurpleField(props){
                                    }
                                         
                                     
-                                    </div>
+                                    </Col>
                                     
                                    
                                 )
                                 
                             })}
                             
-                        </Col>
+                      
 
                     </Row>
 

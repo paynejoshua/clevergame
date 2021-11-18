@@ -24,10 +24,10 @@ function OrangeField(props){
             <Container className="mt-3">
                 <Card style={{borderColor: "orange", borderWidth: "3px"}}>
                     <Row>
-                        <Col className="d-flex justify-content-evenly">                        
+                                               
                             {OrangeSquares.map((item, index) => {
                                 return(
-                                   <div key={index}>
+                                   <Col xs={3} md={2} lg={1} key={index}>
                                        {
                                         props.state.length > index
                                         ? <DiceElement disabledClick={true} dice={props.state[index]}/>
@@ -42,11 +42,11 @@ function OrangeField(props){
                                                 : index === 10 ? "x3" : "" } 
                                             </div>
                                         }
-                                    </div>
+                                    </Col>
                                    
                                 )
                             })}
-                        </Col>
+                    
 
                     </Row>
 

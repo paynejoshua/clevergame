@@ -13,7 +13,7 @@ function DiceRoller(props){
     return(
         <>
             
-            <Card style={{width: "18rem"}}>
+            <Card>
                 <Card.Body>
                     <Card.Title className="d-flex justify-content-center">How Clever Are You?</Card.Title>
                         <DiceSet turnState={props.turnState} availableDices={props.availableDices} onDiceSelect={props.onDiceSelect} />
