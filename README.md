@@ -1,7 +1,7 @@
 ## Welcome to Clever Game
 
 ## Description
-Clever Game is a digital recreation of a dice game called Ganz Schon or That's So Clever. The object of the game is fairly simple. The player or players each take turns rolling six different colored die and then using deciding which are the best one's to take to use on their score card and which to leave behind for the other players to use on theirs. On a scoring card there are different colored fields and each of them have their own set of rules. The color of the die corresponds to the color of the field. 
+Clever Game is a digital recreation of a dice game called Ganz Schon or That's So Clever. The object of the game is fairly simple. The player or players each take turns rolling six different colored die and then deciding which are the best one's to take to use on their score card and which to leave behind for the other players to use on theirs. On a scoring card there are different colored fields and each of them have their own set of rules. The color of the die corresponds to the color of the field. This is a working simplified version of the game and is constantly being worked on. Some day this digital copy will have the ability to play against a computer, play vs other people, and also include "power ups" like re-rolling. 
 
 ## Rules of the Game
 * Each player get's three rounds per turn.
