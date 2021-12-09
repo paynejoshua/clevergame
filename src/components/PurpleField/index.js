@@ -25,9 +25,12 @@ function PurpleField(props){
             <Container className="mt-3">
                 <Card style={{borderColor: "purple", borderWidth: "3px"}}>
                     <Row>
+                    <Col  xs={3} md={2} lg={1} className="d-flex justify-content-center">
+                            <div className="d-flex justify-content-center align-items-center">-></div>
+                           </Col>
                             {PurpleSquares.map((item, index) => {
                                 return(
-                                   <Col xs={3} md={2} lg={1} key={item}>
+                                   <Col className="d-flex justify-content-center" xs={3} md={2} lg={1} key={item}>
                                     {
                                         props.state.length > index
                                         ? <DiceElement disabledClick={true} dice={props.state[index]}/>

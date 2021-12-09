@@ -32,7 +32,7 @@ function LeftOverField(props){
                 <Row>
                         {[...Array(5)].map((item, index) => {
                             return (
-                                <Col key={index}>
+                                <Col xs={4} key={index}>
                                     {props.leftOverDice.length > index
                                         ?
                                         <img src={getDiceImage(props.leftOverDice[index].number)} alt={`${props.leftOverDice[index].number} dice`} className="dice" style={{backgroundColor: props.leftOverDice[index].color}} /> 

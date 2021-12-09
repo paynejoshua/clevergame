@@ -4,6 +4,7 @@ const PlayerState = {
     greenState: [],
     orangeState: [],
     purpleState: [],
+    reRollState: [false, false, false, true],
 
 }
 
