@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/clevergame/static/css/main.6a7349ad.chunk.css",
-    "main.js": "/clevergame/static/js/main.ea77dd65.chunk.js",
-    "main.js.map": "/clevergame/static/js/main.ea77dd65.chunk.js.map",
+    "main.css": "/clevergame/static/css/main.ef7827bc.chunk.css",
+    "main.js": "/clevergame/static/js/main.2ceb458f.chunk.js",
+    "main.js.map": "/clevergame/static/js/main.2ceb458f.chunk.js.map",
     "runtime-main.js": "/clevergame/static/js/runtime-main.e77c357b.js",
     "runtime-main.js.map": "/clevergame/static/js/runtime-main.e77c357b.js.map",
     "static/css/2.07d484c9.chunk.css": "/clevergame/static/css/2.07d484c9.chunk.css",
-    "static/js/2.7fe9bd67.chunk.js": "/clevergame/static/js/2.7fe9bd67.chunk.js",
-    "static/js/2.7fe9bd67.chunk.js.map": "/clevergame/static/js/2.7fe9bd67.chunk.js.map",
+    "static/js/2.ada05ed8.chunk.js": "/clevergame/static/js/2.ada05ed8.chunk.js",
+    "static/js/2.ada05ed8.chunk.js.map": "/clevergame/static/js/2.ada05ed8.chunk.js.map",
     "static/js/3.ea7221a6.chunk.js": "/clevergame/static/js/3.ea7221a6.chunk.js",
     "static/js/3.ea7221a6.chunk.js.map": "/clevergame/static/js/3.ea7221a6.chunk.js.map",
     "index.html": "/clevergame/index.html",
     "static/css/2.07d484c9.chunk.css.map": "/clevergame/static/css/2.07d484c9.chunk.css.map",
-    "static/css/main.6a7349ad.chunk.css.map": "/clevergame/static/css/main.6a7349ad.chunk.css.map",
-    "static/js/2.7fe9bd67.chunk.js.LICENSE.txt": "/clevergame/static/js/2.7fe9bd67.chunk.js.LICENSE.txt",
+    "static/css/main.ef7827bc.chunk.css.map": "/clevergame/static/css/main.ef7827bc.chunk.css.map",
+    "static/js/2.ada05ed8.chunk.js.LICENSE.txt": "/clevergame/static/js/2.ada05ed8.chunk.js.LICENSE.txt",
     "static/media/1Dice.4317f750.svg": "/clevergame/static/media/1Dice.4317f750.svg",
     "static/media/2Dice.ecbbdad5.svg": "/clevergame/static/media/2Dice.ecbbdad5.svg",
     "static/media/3Dice.60f30f07.svg": "/clevergame/static/media/3Dice.60f30f07.svg",
@@ -26,8 +26,8 @@
   "entrypoints": [
     "static/js/runtime-main.e77c357b.js",
     "static/css/2.07d484c9.chunk.css",
-    "static/js/2.7fe9bd67.chunk.js",
-    "static/css/main.6a7349ad.chunk.css",
-    "static/js/main.ea77dd65.chunk.js"
+    "static/js/2.ada05ed8.chunk.js",
+    "static/css/main.ef7827bc.chunk.css",
+    "static/js/main.2ceb458f.chunk.js"
   ]
 }
