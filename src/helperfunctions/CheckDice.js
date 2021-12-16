@@ -55,7 +55,11 @@ const CanSelectBlueDice = (dice, blue, white, blueState) => {
 }
 
 const DoesBlueDiceMatch = (item, dice, blue, white) => {
-    return (blue.number + white.number === item 
+//turn lines 59/60 on when testing
+    // return (white.number === item 
+    //     && (dice.color === "White"))
+        //turn lines 62/63 off when testing
+        return (blue.number + white.number === item 
         && (dice.color === "Blue" || dice.color === "White"))
 }
 

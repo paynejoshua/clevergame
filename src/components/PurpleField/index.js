@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import DiceElement from "../../helperfunctions/dice";
 import {CanPlacePurpleDice, PurpleSquares} from "../../helperfunctions/CheckDice"
+import { BonusType } from "../../helperfunctions/types";
 
 function PurpleField(props){
 
@@ -17,6 +18,12 @@ function PurpleField(props){
             setColorOfDice.color = "Purple"
             props.state.push(setColorOfDice)
             props.onDicePlaced(props.lastSelectedDice, "Purple")
+
+            //check bonuses
+
+            if(index === 2 || index === 7){
+                props.onBonusEarned(BonusType.ReRoll)
+            }
         }
     }
 

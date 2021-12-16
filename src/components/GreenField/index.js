@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import DiceElement from "../../helperfunctions/dice";
 import { CanPlaceGreenDice, GreenSquares } from "../../helperfunctions/CheckDice"
+import { BonusType } from "../../helperfunctions/types";
 
 function GreenField(props) {
 
@@ -14,6 +15,11 @@ function GreenField(props) {
             setColorOfDice.color = "Green"
             props.state.push(setColorOfDice)
             props.onDicePlaced(props.lastSelectedDice, "Green")
+
+            //check for bonuses
+            if(index === 9){
+                props.onBonusEarned(BonusType.ReRoll)
+            }
         }
     }
 

@@ -23,29 +23,29 @@ function LeftOverField(props){
     return (
         <>
 
-        <Card style={{width: "18rem"}}>
+        <Card style={{width: "18rem", height: "6rem"}}>
 
             <Card.Body>
                 <Card.Title>
-                    Left Overs:
+                    Left Over Dice will go here
                 </Card.Title>
-                <Row>
+                <div className="d-flex flex-row justify-content-around" >
                         {[...Array(5)].map((item, index) => {
                             return (
-                                <Col xs={4} key={index}>
+                                <div xs={2} key={index} >
                                     {props.leftOverDice.length > index
                                         ?
-                                        <img src={getDiceImage(props.leftOverDice[index].number)} alt={`${props.leftOverDice[index].number} dice`} className="dice" style={{backgroundColor: props.leftOverDice[index].color}} /> 
-                                        : <div className="gameSquare" style={{ backgroundColor: "white" }}>{}</div>
+                                        <img src={getDiceImage(props.leftOverDice[index].number)} alt={`${props.leftOverDice[index].number} dice`} className="dice-small" style={{backgroundColor: props.leftOverDice[index].color}} /> 
+                                        : <div style={{ backgroundColor: "white" }}>{}</div>
 
                                     }
 
-                                </Col>
+                                </div>
                             )
 
                         })
                         }
-                    </Row>
+                    </div>
 
             </Card.Body>
         </Card>

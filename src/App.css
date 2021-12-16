@@ -76,6 +76,15 @@ body {
   border-radius: 10%;
 }
 
+.dice-small {
+  width: 2rem;
+  height: 2rem;
+  padding: 2px;
+  margin-top: 5px;
+  border-style: solid;
+  border-radius: 10%;
+}
+
 
 .gameSquare {
   padding: 4px;

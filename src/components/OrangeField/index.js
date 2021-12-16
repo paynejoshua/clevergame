@@ -5,6 +5,7 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import DiceElement from "../../helperfunctions/dice"; 
 import {CanPlaceOrangeDice, OrangeSquares} from "../../helperfunctions/CheckDice"
+import { BonusType } from "../../helperfunctions/types";
 
 function OrangeField(props){
     
@@ -16,6 +17,12 @@ function OrangeField(props){
             setColorOfDice.color = "Orange"
             props.state.push(setColorOfDice)
             props.onDicePlaced(props.lastSelectedDice, "Orange", index)
+
+            //check for bonuses
+
+            if(index === 2){
+                props.onBonusEarned(BonusType.ReRoll)
+            }
         }
     }
 

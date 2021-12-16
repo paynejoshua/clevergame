@@ -5,18 +5,26 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import BlueWhite from "../../assets/BlueWhiteCombo.svg";
 import { CanPlaceBlueDice, BlueChoices } from "../../helperfunctions/CheckDice"
+import { BonusType } from "../../helperfunctions/types";
 
 function BlueField(props) {
 
 
     const handleClick = (item, index, props) => {
-
+    //when testing turn line 15 on and turn line 16 off
+        // if (CanPlaceBlueDice(item, props.lastSelectedDice, props.whiteDice, props.whiteDice, props.turnState)) {
         if (CanPlaceBlueDice(item, props.lastSelectedDice, props.blueDice, props.whiteDice, props.turnState)) {
             let setColorOfDice = { ...props.lastSelectedDice }
             setColorOfDice.color = "Blue"
             setColorOfDice.index = index
             props.state[index] = setColorOfDice
             props.onDicePlaced(props.lastSelectedDice, "Blue")
+
+            //check bonuses
+            if(props.state[4] && props.state[8]){
+                props.onBonusEarned(BonusType.ReRoll)
+            }
+
         }
     }
 

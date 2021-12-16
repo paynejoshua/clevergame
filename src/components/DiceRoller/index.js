@@ -21,7 +21,7 @@ function DiceRoller(props){
                         <Button 
                         disabled={props.turnState !== TurnState.RollDice} 
                         className={`mt-2 ${props.turnState === TurnState.RollDice ? "selectedPulse" : ""}`} 
-                        onClick={canRoll() ? props.onRoll  : props.onDiceReset}>{canRoll() ? "Roll Dice"  : "Reset Dice"}</Button>
+                        onClick={canRoll() ? props.onRoll  : props.onTurnComplete}>{canRoll() ? "Roll Dice"  : "Reset Dice"}</Button>
                     </div>
 
                 </Card.Body>

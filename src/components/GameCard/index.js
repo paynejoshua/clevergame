@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Container from "react-bootstrap/Container";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button"
 import Card from "react-bootstrap/Card"
@@ -13,7 +12,7 @@ import GreenField from "../GreenField"
 import OrangeField from "../OrangeField"
 import PurpleField from "../PurpleField";
 import LeftOverField from "../LeftOverField/leftoverfield.js";
-import { TurnState, Color } from "../../helperfunctions/types";
+import { TurnState, Color, BonusType } from "../../helperfunctions/types";
 import PlayerState from "../../models/playerModel";
 import { CanSelectDice } from "../../helperfunctions/CheckDice";
 import { CalculateScore } from "../../helperfunctions/FieldScores";
@@ -37,7 +36,7 @@ function GameCard() {
     const [playerScore, setPlayerScore] = useState(0)
     const [thisGamesRounds, setThisGamesRounds] = useState()
 
-    function onDiceRoll() {
+    const onDiceRoll = () => {
         if (turnState !== TurnState.RollDice) {
             return
         }
@@ -48,7 +47,7 @@ function GameCard() {
         setTurnState(TurnState.SelectDie)
     }
 
-    function onDiceConfirm() {
+    const onDiceConfirm = () => {
         let updatedSelectedDice = [...selectedDice]
         updatedSelectedDice.push(confirmDiceChoice)
         setSelectedDice(updatedSelectedDice)
@@ -65,11 +64,11 @@ function GameCard() {
         setConfirmDiceChoice(undefined)
     }
 
-    function onDiceReject() {
+    const onDiceReject = () => {
         setConfirmDiceChoice(undefined)
     }
 
-    function onDiceSelect(dice) {
+    const onDiceSelect = (dice) => {
 
         // TODO: Consolidate duplicate code between SelectDie and PlaceDie
 
@@ -131,7 +130,7 @@ function GameCard() {
 
     }
 
-    function markDiceForPlatter(newSelectedDice, newAvailableDice) {
+    const markDiceForPlatter = (newSelectedDice, newAvailableDice) => {
 
         let tempAvailableDice = [...newAvailableDice]
 
@@ -160,7 +159,7 @@ function GameCard() {
         setAvailableDices(tempAvailableDice)
     }
 
-    function moveDiceToPlatter(selectedDice, newAvailableDice) {
+    const moveDiceToPlatter = (selectedDice, newAvailableDice) => {
 
         //here I am seeing if the selected dice(s) have a number that is greater than the ones still available [X]Done
         //if so then I am disabling the available dice which will be placed in the left over pile for other players to use. [X]Done
@@ -192,7 +191,7 @@ function GameCard() {
     }
 
 
-    function newDice() {
+    const newDice = () => {
         let tempArr = []
 
         for (let i = 0; i < availableDices.length; i++) {
@@ -222,17 +221,29 @@ function GameCard() {
 
     }
 
-
-    const diceReset = () => {
-
-
+    const startNewTurn = () =>{
+        const newTurnNumber = round + 1
+     
         setRollNumber(0)
-        setRound(prevRound => prevRound + 1)
+        setRound(newTurnNumber)
 
 
         setLeftOverDice([])
         setSelectedDice([])
 
+        diceReset()
+
+        if(newTurnNumber === 1 || newTurnNumber === 3){
+            onBonusEarned(BonusType.ReRoll)
+        }
+
+    }
+
+    const diceReset = () => {
+    //for testing purposes turn this on and also turn testing on in the blueField and checkDice helper const: 
+        // const availableColors = [Color.White, Color.White, Color.White, Color.White, Color.White, Color.White]
+
+        //when done testing turn this back on and turn testing off in blueField and checkDice helper const:
         const availableColors = [Color.White, Color.Yellow, Color.Blue, Color.Green, Color.Orange, Color.Purple]
         let tempArr = []
         for (let i = 0; i < availableColors.length; i++) {
@@ -244,17 +255,32 @@ function GameCard() {
         setAvailableDices(tempArr)
     }
 
-    function resetGame() {
+    const resetGame = () => {
         window.location.reload(false)
     }
 
-    function initRounds() {
+    const initRounds = () => {
         setThisGamesRounds(6)
+    }
+
+    const onBonusEarned = (bonusType, color, number) => {
+
+        if(bonusType === BonusType.ReRoll){
+            //created a nested if statement here for the toast because I want the rest of this part of the if statetment to run even if it is round 1. 
+           if(round > 1){toast(`Congratulations you have earned a reroll bonus!`)}
+        let tempPlayerState = playerState
+        tempPlayerState.reRollState.push(true)
+        setPlayerState(tempPlayerState)
+        } else if(bonusType === BonusType.PlusOne){
+            
+        } else if(bonusType === BonusType.ExtraDie){
+            
+        }
     }
 
     useEffect(() => {
         initRounds()
-        diceReset()
+        startNewTurn()
 
     }, [])
 
@@ -297,7 +323,7 @@ function GameCard() {
                             <KeptDice selectedDice={selectedDice} />
                         </div>
 
-                        <DiceRoller turnState={turnState} onRoll={onDiceRoll} onDiceReset={diceReset} rollNumber={rollNumber} round={round} availableDices={availableDices} onDiceSelect={onDiceSelect} />
+                        <DiceRoller turnState={turnState} onRoll={onDiceRoll} onTurnComplete={startNewTurn} rollNumber={rollNumber} round={round} availableDices={availableDices} onDiceSelect={onDiceSelect} />
 
 
                     </Col>
@@ -308,24 +334,24 @@ function GameCard() {
                     </Col>
 
                     <Col xs={12} sm={12} md={12} lg={6} xl={6} xxl={6}>
-                        <YellowField turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length - 1]} state={playerState.yellowState} onDicePlaced={handleDicePlace} />
+                        <YellowField onBonusEarned={onBonusEarned} turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length - 1]} state={playerState.yellowState} onDicePlaced={handleDicePlace} />
                     </Col>
 
                     <Col xs={12} sm={12} md={12} lg={6} xl={6} xxl={6}>
 
-                        <BlueField whiteDice={wildDice} blueDice={blueDice} turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length - 1]} state={playerState.blueState} onDicePlaced={handleDicePlace} />
+                        <BlueField onBonusEarned={onBonusEarned} whiteDice={wildDice} blueDice={blueDice} turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length - 1]} state={playerState.blueState} onDicePlaced={handleDicePlace} />
                     </Col>
                     <Col xs={12} sm={12} md={12} lg={12} xl={12} xxl={12}>
 
-                        <GreenField turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length - 1]} state={playerState.greenState} onDicePlaced={handleDicePlace} />
+                        <GreenField onBonusEarned={onBonusEarned} turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length - 1]} state={playerState.greenState} onDicePlaced={handleDicePlace} />
                     </Col>
                     <Col xs={12} sm={12} md={12} lg={12} xl={12} xxl={12}>
 
-                        <OrangeField turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length - 1]} state={playerState.orangeState} onDicePlaced={handleDicePlace} />
+                        <OrangeField onBonusEarned={onBonusEarned} turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length - 1]} state={playerState.orangeState} onDicePlaced={handleDicePlace} />
                     </Col>
                     <Col xs={12} sm={12} md={12} lg={12} xl={12} xxl={12}>
 
-                        <PurpleField turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length - 1]} state={playerState.purpleState} onDicePlaced={handleDicePlace} />
+                        <PurpleField onBonusEarned={onBonusEarned} turnState={turnState} lastSelectedDice={selectedDice[selectedDice.length - 1]} state={playerState.purpleState} onDicePlaced={handleDicePlace} />
                     </Col>
 
                 </Row>

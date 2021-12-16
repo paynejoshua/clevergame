@@ -13,3 +13,10 @@ export const Color = {
    Purple: "Purple"
 
 }
+
+export const BonusType = {
+   ReRoll: 1,
+   PlusOne: 2,
+   ExtraDie: 3 
+
+}
