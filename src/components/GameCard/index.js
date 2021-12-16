@@ -17,7 +17,8 @@ import PlayerState from "../../models/playerModel";
 import { CanSelectDice } from "../../helperfunctions/CheckDice";
 import { CalculateScore } from "../../helperfunctions/FieldScores";
 import { ToastContainer, toast } from 'react-toastify';
-import ReRollField from "../ReRollField"
+import ReRollField from "../ReRollField";
+import PlusOneField from "../PlusOneField"
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -35,6 +36,7 @@ function GameCard() {
     const [round, setRound] = useState(0)
     const [playerScore, setPlayerScore] = useState(0)
     const [thisGamesRounds, setThisGamesRounds] = useState()
+    const [plusOneActivated, setPlusOneActivated] = useState(false)
 
     const onDiceRoll = () => {
         if (turnState !== TurnState.RollDice) {
@@ -235,6 +237,8 @@ function GameCard() {
 
         if(newTurnNumber === 1 || newTurnNumber === 3){
             onBonusEarned(BonusType.ReRoll)
+        } else if(newTurnNumber === 2){
+            onBonusEarned(BonusType.PlusOne)
         }
 
     }
@@ -272,10 +276,18 @@ function GameCard() {
         tempPlayerState.reRollState.push(true)
         setPlayerState(tempPlayerState)
         } else if(bonusType === BonusType.PlusOne){
+            toast(`Congratulations you have earned a plus one bonus!`)
+            let tempPlayerState = playerState
+            tempPlayerState.plusOneState.push(true)
+            setPlayerState(tempPlayerState)
             
         } else if(bonusType === BonusType.ExtraDie){
             
         }
+    }
+
+    const plusOneSelect = (die) =>{
+
     }
 
     useEffect(() => {
@@ -315,21 +327,33 @@ function GameCard() {
                     </Col>
                 </Row>
 
+                <Row>
+                    <Col xs={12} md={12} lg={5}>
+                        <PlusOneField 
+                            state={playerState.plusOneState}
+                            turnState={turnState}
+                            rollNumber={rollNumber}
+                            setPlusOneActivated={setPlusOneActivated}
+                           
+                        />
+                    </Col>
+                </Row>
+
                 <Row className="mt-5 mb-5">
 
                     <Col xs={12} md={6} lg={6} className="d-flex flex-row">
 
                         <div>
-                            <KeptDice selectedDice={selectedDice} />
+                            <KeptDice selectedDice={selectedDice} plusOneActivated={plusOneActivated} />
                         </div>
 
-                        <DiceRoller turnState={turnState} onRoll={onDiceRoll} onTurnComplete={startNewTurn} rollNumber={rollNumber} round={round} availableDices={availableDices} onDiceSelect={onDiceSelect} />
+                        <DiceRoller plusOneActivated={plusOneActivated} turnState={turnState} onRoll={onDiceRoll} onTurnComplete={startNewTurn} rollNumber={rollNumber} round={round} availableDices={availableDices} onDiceSelect={onDiceSelect} />
 
 
                     </Col>
 
                     <Col xs={12} md={6} lg={6} className="d-flex justify-content-center">
-                        <LeftOverField leftOverDice={leftOverDice} />
+                        <LeftOverField leftOverDice={leftOverDice} plusOneActivated={plusOneActivated} />
 
                     </Col>
 

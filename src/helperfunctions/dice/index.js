@@ -5,6 +5,7 @@ import {TurnState} from "../types";
 
 function DiceElement(props){
 
+
     function getDiceImage(){
         
             switch(props.dice.number){
@@ -21,6 +22,7 @@ function DiceElement(props){
         
     }
 
+
     return (
         <>
         {
@@ -28,7 +30,7 @@ function DiceElement(props){
         <img 
         src={getDiceImage()} 
         alt={`${props.dice.number} dice`} 
-        className={`dice ${props.dice.markedForPlatter ? 'markForPlatter' : 'diceBorder'}  ${props.turnState === TurnState.SelectDie ? 'selectedPulse' : ""} ${props.disabledClick ? 'nonSelectable' : ''}`} 
+        className={`dice ${props.dice.markedForPlatter ? 'markForPlatter' : 'diceBorder'}  ${props.turnState === TurnState.SelectDie ? 'selectedPulse': ""} ${props.disabledClick ? 'nonSelectable' : ''}`} 
         onClick={() => props.onDiceSelect(props.dice)} 
         style={{backgroundColor: props.dice.color}} />
            }

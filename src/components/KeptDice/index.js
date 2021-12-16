@@ -1,14 +1,10 @@
 import React from "react";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import DiceShortCut from "../DiceShortCut";
 import DiceElement from "../../helperfunctions/dice"
 
 
 function KeptDice(props){
 
-
-
+    console.log(props.plusOneActivated)
     return (
         <>
            
@@ -18,7 +14,9 @@ function KeptDice(props){
                         <div key={index} >
                             {props.selectedDice.length > index
                                 ?
-                                <DiceElement dice={props.selectedDice[index]}/>
+                                <div className={`${props.plusOneActivated ? "selectedPulse": ""}`}>
+                                    <DiceElement dice={props.selectedDice[index]}/>
+                                </div>
                                 : <div className="gameSquare" style={{ backgroundColor: "white" }}>{}</div>
 
                             }

@@ -5,6 +5,8 @@ import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import DiceElement from "../../helperfunctions/dice";
 import { CanPlaceYellowDice, YellowChoices } from "../../helperfunctions/CheckDice"
+import { propTypes } from "react-bootstrap/esm/Image";
+import { BonusType } from "../../helperfunctions/types";
 
 
 function YellowField(props) {
@@ -20,6 +22,11 @@ function YellowField(props) {
             setColorOfDice.isPlaced = true;
             props.state[index] = setColorOfDice;
             props.onDicePlaced(props.lastSelectedDice, "Yellow");
+
+            //check for bonuses
+            if(props.state[0] && props.state[5] && props.state[10] && props.state[15]){
+                propTypes.onBonusEarned(BonusType.PlusOne)
+            }
         }
     }
 

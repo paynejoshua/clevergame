@@ -23,6 +23,8 @@ function PurpleField(props){
 
             if(index === 2 || index === 7){
                 props.onBonusEarned(BonusType.ReRoll)
+            }else if(index === 4 || index === 10){
+                props.onBonusEarned(BonusType.PlusOne)
             }
         }
     }

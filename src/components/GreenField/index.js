@@ -19,6 +19,8 @@ function GreenField(props) {
             //check for bonuses
             if(index === 9){
                 props.onBonusEarned(BonusType.ReRoll)
+            } else if(index === 3){
+                props.onBonusEarned(BonusType.PlusOne)
             }
         }
     }

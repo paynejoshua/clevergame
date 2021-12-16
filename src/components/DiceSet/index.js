@@ -15,7 +15,7 @@ function DiceSet(props){
                 {dices.map((item, index) =>
                     
                     <Col xs={4} key={index}>
-                        <div className="d-flex justify-content-center">
+                        <div className={`d-flex justify-content-center ${props.plusOneActivated ? 'selectedPulse' : ''}`}>
 
                             <Dice turnState={props.turnState} onDiceSelect={props.onDiceSelect} dice={item}/>
                         </div>

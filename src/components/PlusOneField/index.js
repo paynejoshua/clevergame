@@ -6,9 +6,9 @@ import Col from "react-bootstrap/Col"
 import {TurnState} from "../../helperfunctions/types"
 
 
-function ReRollField(props) {
+function PlusOneField(props) {
 
-    let reRollCircles = [1,2,3,4,5,6,7]
+    let plusOneCircles = [1,2,3,4,5,6,7]
 
     const isNextAvailable = (index) =>{
         for(let i = 0; i < props.state.length; i++){
@@ -21,31 +21,28 @@ function ReRollField(props) {
     const shouldPulse = (index) =>{
         
 
-        if(props.turnState !== TurnState.SelectDie){
+        if(props.turnState !== TurnState.RollDice && props.rollNumber !== 3){
             return false
         }
 
-        return props.turnState === TurnState.SelectDie && isNextAvailable(index)
+        return props.turnState === TurnState.RollDice && isNextAvailable(index) && props.rollNumber === 3
        
     }
 
-    const onReRollClick = (index) =>{
+    const onPlusOneClick = (index) =>{
 
-        //pass in roll dice function as props from game card and use call back function here
-        //to roll the dice again.
+        if(props.rollNumber !== 3){
+            return
+        }
         
-        if(isNextAvailable(index)){
+        if(isNextAvailable(index) && props.rollNumber === 3){
             
-            props.setRollNumber(prevRollNumber => prevRollNumber - 1)
-
-            props.setTurnState(TurnState.RollDice)
-
+            props.setPlusOneActivated(true)
             props.state[index] = false
         }
 
     }
-
-    console.log("reRoll", props.state)
+    
 
     return (
         <>
@@ -53,14 +50,14 @@ function ReRollField(props) {
                 <Card style={{borderColor: "white", borderWidth: "3px"}}>
                     <Row>
                             <Col className="d-flex align-items-center">
-                                <div>ReRoll</div>
+                                <div>Plus One</div>
                             </Col>       
-                            {reRollCircles.map((item, index) => {
+                            {plusOneCircles.map((item, index) => {
                                 return(
                                    <Col className="d-flex justify-content-center" key={index}>
                                        {
                                          <div 
-                                         onClick={() => onReRollClick(index)} 
+                                         onClick={() => onPlusOneClick(index)} 
                                          className={`${shouldPulse(index) ? `selectedPulse` : ""} gameCircle d-flex justify-content-center`}
                                          style={props.state.length > index 
                                             && props.state[index] === true 
@@ -89,4 +86,4 @@ function ReRollField(props) {
     )
 }
 
-export default ReRollField
+export default PlusOneField

@@ -1,5 +1,3 @@
-import PlayerState from "../models/playerModel"
-
 //the following is a map of the ies for the yellow field that needs to be met for points
 //0,4,8 (10) | 1,5,13 (14)| 2,10,14 (16)| 7,11,15 (20)
 

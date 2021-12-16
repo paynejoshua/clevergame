@@ -1,7 +1,5 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import DiceShortCut from "../../components/DiceShortCut";
 
 function LeftOverField(props){
@@ -18,6 +16,7 @@ function LeftOverField(props){
 
         }
     }
+
     
 
     return (
@@ -35,7 +34,7 @@ function LeftOverField(props){
                                 <div xs={2} key={index} >
                                     {props.leftOverDice.length > index
                                         ?
-                                        <img src={getDiceImage(props.leftOverDice[index].number)} alt={`${props.leftOverDice[index].number} dice`} className="dice-small" style={{backgroundColor: props.leftOverDice[index].color}} /> 
+                                        <img src={getDiceImage(props.leftOverDice[index].number)} alt={`${props.leftOverDice[index].number} dice`} className={`dice-small ${props.plusOneActivated ? "selectedPulse": ""}`} style={{backgroundColor: props.leftOverDice[index].color}} /> 
                                         : <div style={{ backgroundColor: "white" }}>{}</div>
 
                                     }
