@@ -20,6 +20,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import ReRollField from "../ReRollField";
 import PlusOneField from "../PlusOneField"
 import 'react-toastify/dist/ReactToastify.css';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faBars} from "@fortawesome/free-solid-svg-icons"
 
 
 function GameCard() {
@@ -308,10 +310,13 @@ function GameCard() {
             <Card style={{ background: "rgba(255, 255, 255, 0.25)", width: "100%", height: "auto" }} >
 
                 <Row>
-                    <Col>
+                    <Col xs={11}>
                         <Card.Title className="text-center" style={{ color: "white", fontSize: "4rem" }}>Clever Game</Card.Title>
                         <Card.Title style={{ color: "white" }}>Score: {playerScore}</Card.Title>
                         <Card.Title style={{ color: "white" }}>Round: {round} / {thisGamesRounds}</Card.Title>
+                    </Col>
+                    <Col xs={1}>
+                        <FontAwesomeIcon size="5x" color="white" icon={faBars} />
                     </Col>
                 </Row>
 
