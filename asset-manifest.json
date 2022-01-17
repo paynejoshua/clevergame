@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/clevergame/static/css/main.ef7827bc.chunk.css",
-    "main.js": "/clevergame/static/js/main.27cfe646.chunk.js",
-    "main.js.map": "/clevergame/static/js/main.27cfe646.chunk.js.map",
+    "main.js": "/clevergame/static/js/main.331d7152.chunk.js",
+    "main.js.map": "/clevergame/static/js/main.331d7152.chunk.js.map",
     "runtime-main.js": "/clevergame/static/js/runtime-main.4a3ac6e2.js",
     "runtime-main.js.map": "/clevergame/static/js/runtime-main.4a3ac6e2.js.map",
     "static/css/2.07d484c9.chunk.css": "/clevergame/static/css/2.07d484c9.chunk.css",
@@ -28,6 +28,6 @@
     "static/css/2.07d484c9.chunk.css",
     "static/js/2.a76f8b4d.chunk.js",
     "static/css/main.ef7827bc.chunk.css",
-    "static/js/main.27cfe646.chunk.js"
+    "static/js/main.331d7152.chunk.js"
   ]
 }
