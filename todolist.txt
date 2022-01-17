@@ -4,7 +4,7 @@ To Do:
     [x]roll again
     [x]double points 
     [x]triple points
-    []foxes 
+    [x]foxes 
     []wild cards for each color
     []round special powers
 [] Orange Field fix: 
