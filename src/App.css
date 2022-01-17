@@ -96,6 +96,7 @@ body {
   border-color: black;
   border-style: solid;
 }
+
 .gameCircle {
   padding: 4px;
   width: 2rem;
@@ -158,6 +159,19 @@ body {
 
 .nonSelectable {
   pointer-events: none;
+}
+
+.greenSelected {
+  padding: 4px;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 10%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-color: black;
+  border-style: solid;
+  background-color: green;
+  font-size: 2rem;
 }
 
 

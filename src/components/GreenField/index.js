@@ -42,7 +42,8 @@ function GreenField(props) {
                                 <Col className="d-flex justify-content-center" xs={3} md={2} lg={1} key={index}>
                                     {
                                         props.state.length > index
-                                            ? <DiceElement disabledClick={true} dice={props.state[index]} />
+                                    ? <div className="greenSelected d-inline-block text-center" >X</div>
+                                            // ? <DiceElement disabledClick={true} dice={props.state[index]} />
                                             : <div onClick={() => handleClick(item, index, props)} style={{ fontSize: "2rem" }} className={`gameSquare d-inline-block ${CanPlaceGreenDice(item, props.lastSelectedDice, props.turnState, props.state, index) ? "selectedPulse greenBorder" : ""}`}>{item}<span>≥</span></div>
                                     }
 
