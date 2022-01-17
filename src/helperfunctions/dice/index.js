@@ -23,6 +23,14 @@ function DiceElement(props){
     }
 
 
+    const handleClick = (dice) => {
+        if(props.plusOneActivated){
+            props.setPlusOneActivated(false)
+        }
+
+        props.onDiceSelect(dice)
+    }
+
     return (
         <>
         {
@@ -31,7 +39,7 @@ function DiceElement(props){
         src={getDiceImage()} 
         alt={`${props.dice.number} dice`} 
         className={`dice ${props.dice.markedForPlatter ? 'markForPlatter' : 'diceBorder'}  ${props.turnState === TurnState.SelectDie ? 'selectedPulse': ""} ${props.disabledClick ? 'nonSelectable' : ''}`} 
-        onClick={() => props.onDiceSelect(props.dice)} 
+        onClick={() => handleClick(props.dice)} 
         style={{backgroundColor: props.dice.color}} />
            }
                 

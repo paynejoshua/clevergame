@@ -24,7 +24,6 @@ function PlusOneField(props) {
         if(props.turnState !== TurnState.RollDice && props.rollNumber !== 3){
             return false
         }
-
         return props.turnState === TurnState.RollDice && isNextAvailable(index) && props.rollNumber === 3
        
     }
@@ -35,8 +34,8 @@ function PlusOneField(props) {
             return
         }
         
-        if(isNextAvailable(index) && props.rollNumber === 3){
-            
+        if(isNextAvailable(index)){
+            props.setTurnState(TurnState.SelectDie)
             props.setPlusOneActivated(true)
             props.state[index] = false
         }

@@ -4,7 +4,6 @@ import DiceElement from "../../helperfunctions/dice"
 
 function KeptDice(props){
 
-    console.log(props.plusOneActivated)
     return (
         <>
            
@@ -15,7 +14,11 @@ function KeptDice(props){
                             {props.selectedDice.length > index
                                 ?
                                 <div className={`${props.plusOneActivated ? "selectedPulse": ""}`}>
-                                    <DiceElement dice={props.selectedDice[index]}/>
+                                    <DiceElement
+                                    onDiceSelect={props.onDiceSelect}
+                                    plusOneActivated={props.plusOneActivated}
+                                    setPlusOneActivated={props.setPlusOneActivated} 
+                                    dice={props.selectedDice[index]}/>
                                 </div>
                                 : <div className="gameSquare" style={{ backgroundColor: "white" }}>{}</div>
 

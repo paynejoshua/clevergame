@@ -17,6 +17,18 @@ function LeftOverField(props){
         }
     }
 
+    const leftOverSelect = (number, color) =>{
+        if(props.plusOneActivated){
+        let dice = {
+            color: color,
+            number: number
+        }
+
+        props.onDiceSelect(dice)
+        props.setPlusOneActivated(false)
+    
+        }
+    }
     
 
     return (
@@ -34,7 +46,7 @@ function LeftOverField(props){
                                 <div xs={2} key={index} >
                                     {props.leftOverDice.length > index
                                         ?
-                                        <img src={getDiceImage(props.leftOverDice[index].number)} alt={`${props.leftOverDice[index].number} dice`} className={`dice-small ${props.plusOneActivated ? "selectedPulse": ""}`} style={{backgroundColor: props.leftOverDice[index].color}} /> 
+                                        <img onClick={() => leftOverSelect(props.leftOverDice[index].number, props.leftOverDice[index].color)} src={getDiceImage(props.leftOverDice[index].number)} alt={`${props.leftOverDice[index].number} dice`} className={`dice-small ${props.plusOneActivated ? "selectedPulse": ""}`} style={{backgroundColor: props.leftOverDice[index].color}} /> 
                                         : <div style={{ backgroundColor: "white" }}>{}</div>
 
                                     }

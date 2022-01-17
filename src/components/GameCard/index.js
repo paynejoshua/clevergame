@@ -74,7 +74,9 @@ function GameCard() {
 
     const onDiceSelect = (dice) => {
 
-        // TODO: Consolidate duplicate code between SelectDie and PlaceDie
+        // TODO: Consolidate duplicate code between SelectDie and PlaceDie []
+
+        console.log("heres your dice", dice)
 
         if (turnState === TurnState.SelectDie) {
 
@@ -129,6 +131,8 @@ function GameCard() {
 
             }
 
+        } else if(turnState === TurnState.RollDice && !plusOneActivated){
+            return
         }
 
 
@@ -288,9 +292,6 @@ function GameCard() {
         }
     }
 
-    const plusOneSelect = (die) =>{
-
-    }
 
     useEffect(() => {
         initRounds()
@@ -337,6 +338,7 @@ function GameCard() {
                         <PlusOneField 
                             state={playerState.plusOneState}
                             turnState={turnState}
+                            setTurnState={setTurnState}
                             rollNumber={rollNumber}
                             setPlusOneActivated={setPlusOneActivated}
                            
@@ -349,7 +351,7 @@ function GameCard() {
                     <Col xs={12} md={6} lg={6} className="d-flex flex-row">
 
                         <div>
-                            <KeptDice selectedDice={selectedDice} plusOneActivated={plusOneActivated} />
+                            <KeptDice onDiceSelect={onDiceSelect} selectedDice={selectedDice} plusOneActivated={plusOneActivated} setPlusOneActivated={setPlusOneActivated} />
                         </div>
 
                         <DiceRoller plusOneActivated={plusOneActivated} turnState={turnState} onRoll={onDiceRoll} onTurnComplete={startNewTurn} rollNumber={rollNumber} round={round} availableDices={availableDices} onDiceSelect={onDiceSelect} />
@@ -358,7 +360,7 @@ function GameCard() {
                     </Col>
 
                     <Col xs={12} md={6} lg={6} className="d-flex justify-content-center">
-                        <LeftOverField leftOverDice={leftOverDice} plusOneActivated={plusOneActivated} />
+                        <LeftOverField onDiceSelect={onDiceSelect}  leftOverDice={leftOverDice} plusOneActivated={plusOneActivated} setPlusOneActivated={setPlusOneActivated} />
 
                     </Col>
 
