@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/clevergame/static/css/main.ef7827bc.chunk.css",
-    "main.js": "/clevergame/static/js/main.ddf297d1.chunk.js",
-    "main.js.map": "/clevergame/static/js/main.ddf297d1.chunk.js.map",
-    "runtime-main.js": "/clevergame/static/js/runtime-main.057c2434.js",
-    "runtime-main.js.map": "/clevergame/static/js/runtime-main.057c2434.js.map",
+    "main.js": "/clevergame/static/js/main.34a20b02.chunk.js",
+    "main.js.map": "/clevergame/static/js/main.34a20b02.chunk.js.map",
+    "runtime-main.js": "/clevergame/static/js/runtime-main.4a3ac6e2.js",
+    "runtime-main.js.map": "/clevergame/static/js/runtime-main.4a3ac6e2.js.map",
     "static/css/2.07d484c9.chunk.css": "/clevergame/static/css/2.07d484c9.chunk.css",
-    "static/js/2.e0fde834.chunk.js": "/clevergame/static/js/2.e0fde834.chunk.js",
-    "static/js/2.e0fde834.chunk.js.map": "/clevergame/static/js/2.e0fde834.chunk.js.map",
-    "static/js/3.51a4e96b.chunk.js": "/clevergame/static/js/3.51a4e96b.chunk.js",
-    "static/js/3.51a4e96b.chunk.js.map": "/clevergame/static/js/3.51a4e96b.chunk.js.map",
+    "static/js/2.dafd5cfa.chunk.js": "/clevergame/static/js/2.dafd5cfa.chunk.js",
+    "static/js/2.dafd5cfa.chunk.js.map": "/clevergame/static/js/2.dafd5cfa.chunk.js.map",
+    "static/js/3.227a44c8.chunk.js": "/clevergame/static/js/3.227a44c8.chunk.js",
+    "static/js/3.227a44c8.chunk.js.map": "/clevergame/static/js/3.227a44c8.chunk.js.map",
     "index.html": "/clevergame/index.html",
     "static/css/2.07d484c9.chunk.css.map": "/clevergame/static/css/2.07d484c9.chunk.css.map",
     "static/css/main.ef7827bc.chunk.css.map": "/clevergame/static/css/main.ef7827bc.chunk.css.map",
-    "static/js/2.e0fde834.chunk.js.LICENSE.txt": "/clevergame/static/js/2.e0fde834.chunk.js.LICENSE.txt",
+    "static/js/2.dafd5cfa.chunk.js.LICENSE.txt": "/clevergame/static/js/2.dafd5cfa.chunk.js.LICENSE.txt",
     "static/media/1Dice.4317f750.svg": "/clevergame/static/media/1Dice.4317f750.svg",
     "static/media/2Dice.ecbbdad5.svg": "/clevergame/static/media/2Dice.ecbbdad5.svg",
     "static/media/3Dice.60f30f07.svg": "/clevergame/static/media/3Dice.60f30f07.svg",
@@ -24,10 +24,10 @@
     "static/media/BlueWhiteCombo.e12a8c30.svg": "/clevergame/static/media/BlueWhiteCombo.e12a8c30.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.057c2434.js",
+    "static/js/runtime-main.4a3ac6e2.js",
     "static/css/2.07d484c9.chunk.css",
-    "static/js/2.e0fde834.chunk.js",
+    "static/js/2.dafd5cfa.chunk.js",
     "static/css/main.ef7827bc.chunk.css",
-    "static/js/main.ddf297d1.chunk.js"
+    "static/js/main.34a20b02.chunk.js"
   ]
 }
