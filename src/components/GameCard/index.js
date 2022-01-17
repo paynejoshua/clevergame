@@ -15,7 +15,7 @@ import LeftOverField from "../LeftOverField/leftoverfield.js";
 import { TurnState, Color, BonusType } from "../../helperfunctions/types";
 import PlayerState from "../../models/playerModel";
 import { CanSelectDice } from "../../helperfunctions/CheckDice";
-import { CalculateScore } from "../../helperfunctions/FieldScores";
+import { CalculateScore, LowestScore } from "../../helperfunctions/FieldScores";
 import { ToastContainer, toast } from 'react-toastify';
 import ReRollField from "../ReRollField";
 import PlusOneField from "../PlusOneField"
@@ -39,6 +39,8 @@ function GameCard() {
     const [playerScore, setPlayerScore] = useState(0)
     const [thisGamesRounds, setThisGamesRounds] = useState()
     const [plusOneActivated, setPlusOneActivated] = useState(false)
+    const [lowestScore, setLowestScore] = useState()
+    const [foxes, setFoxes] = useState(0)
 
     const onDiceRoll = () => {
         if (turnState !== TurnState.RollDice) {
@@ -49,6 +51,7 @@ function GameCard() {
 
         newDice()
         setTurnState(TurnState.SelectDie)
+
     }
 
     const onDiceConfirm = () => {
@@ -60,9 +63,7 @@ function GameCard() {
 
         setAvailableDices(updatedAvailableDices)
 
-        let actionState = 1
-
-        moveDiceToPlatter(confirmDiceChoice, updatedAvailableDices, actionState)
+        moveDiceToPlatter(confirmDiceChoice, updatedAvailableDices)
 
         setTurnState(TurnState.RollDice)
         setConfirmDiceChoice(undefined)
@@ -223,13 +224,19 @@ function GameCard() {
     const handleDicePlace = (dice, field, index) => {
 
         setPlayerScore(CalculateScore(playerState))
+        setLowestScore(LowestScore(playerState))
         moveDiceToPlatter(dice, availableDices)
-
         setTurnState(TurnState.RollDice)
+
+        if(round > thisGamesRounds){
+            setPlayerScore(score => score + (foxes * lowestScore))
+        }
+
+        console.log("lowest score", lowestScore)
 
     }
 
-    const startNewTurn = () =>{
+    const startNewGame = () =>{
         const newTurnNumber = round + 1
      
         setRollNumber(0)
@@ -263,6 +270,7 @@ function GameCard() {
             })
         }
         setAvailableDices(tempArr)
+        
     }
 
     const resetGame = () => {
@@ -270,7 +278,7 @@ function GameCard() {
     }
 
     const initRounds = () => {
-        setThisGamesRounds(6)
+        setThisGamesRounds(10)
     }
 
     const onBonusEarned = (bonusType, color, number) => {
@@ -289,13 +297,16 @@ function GameCard() {
             
         } else if(bonusType === BonusType.ExtraDie){
             
+        } else if(bonusType === BonusType.Fox){
+            toast('Congratulations you have earned a fox bonus!')
+            setFoxes(fox => fox +1)
         }
     }
-
+    
 
     useEffect(() => {
         initRounds()
-        startNewTurn()
+        startNewGame()
 
     }, [])
 
@@ -354,7 +365,7 @@ function GameCard() {
                             <KeptDice onDiceSelect={onDiceSelect} selectedDice={selectedDice} plusOneActivated={plusOneActivated} setPlusOneActivated={setPlusOneActivated} />
                         </div>
 
-                        <DiceRoller plusOneActivated={plusOneActivated} turnState={turnState} onRoll={onDiceRoll} onTurnComplete={startNewTurn} rollNumber={rollNumber} round={round} availableDices={availableDices} onDiceSelect={onDiceSelect} />
+                        <DiceRoller plusOneActivated={plusOneActivated} turnState={turnState} onRoll={onDiceRoll} onTurnComplete={startNewGame} rollNumber={rollNumber} round={round} availableDices={availableDices} onDiceSelect={onDiceSelect} />
 
 
                     </Col>
@@ -405,7 +416,7 @@ function GameCard() {
             <Modal show={round > thisGamesRounds} >
                 <Modal.Title>Game Over</Modal.Title>
                 <Modal.Body>
-                    Great Game! You scored: {playerScore}
+                    Great Game! You scored: {playerScore} points
                 </Modal.Body>
                 <Button onClick={resetGame}>Play Again!</Button>
             </Modal>

@@ -17,6 +17,7 @@ export const Color = {
 export const BonusType = {
    ReRoll: 1,
    PlusOne: 2,
-   ExtraDie: 3 
+   ExtraDie: 3,
+   Fox: 4
 
 }

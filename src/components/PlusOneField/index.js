@@ -20,17 +20,18 @@ function PlusOneField(props) {
 
     const shouldPulse = (index) =>{
         
+        console.log("plus one pulse", props.turnState)
 
-        if(props.turnState !== TurnState.RollDice && props.rollNumber !== 3){
+        if(props.turnState !== TurnState.RollDice){
             return false
         }
-        return props.turnState === TurnState.RollDice && isNextAvailable(index) && props.rollNumber === 3
+        return props.turnState === TurnState.RollDice && isNextAvailable(index)
        
     }
 
     const onPlusOneClick = (index) =>{
 
-        if(props.rollNumber !== 3){
+        if(props.turnState !== TurnState.RollDice){
             return
         }
         

@@ -122,5 +122,21 @@ export const CalculateScore = (playerState) =>{
         BlueScore(playerState.blueState) + 
         GreenScore(playerState.greenState) + 
         OrangeScore(playerState.orangeState) + 
-        PurpleScore(playerState.purpleState))
+        PurpleScore(playerState.purpleState)) 
+
+}
+
+export const LowestScore = (playerState) =>{
+    let allScores = [
+        YellowScore(playerState.yellowState),
+        BlueScore(playerState.blueState),
+        GreenScore(playerState.greenState),
+        OrangeScore(playerState.orangeState),
+        PurpleScore(playerState.purpleState)
+    ]
+
+    let lowestScore = Math.min(...allScores)
+
+    return lowestScore
+
 }

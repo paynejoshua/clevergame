@@ -25,7 +25,10 @@ function YellowField(props) {
 
             //check for bonuses
             if(props.state[0] && props.state[5] && props.state[10] && props.state[15]){
-                propTypes.onBonusEarned(BonusType.PlusOne)
+                props.onBonusEarned(BonusType.PlusOne)
+            }
+            if(props.state[13] && props.state[14] && props.state[15]){
+                props.onBonusEarned(BonusType.Fox)
             }
         }
     }

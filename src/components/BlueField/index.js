@@ -25,6 +25,8 @@ function BlueField(props) {
                 props.onBonusEarned(BonusType.ReRoll)
             }else if(props.state[3] && props.state[7] && props.state[11]){
                 props.onBonusEarned(BonusType.PlusOne)
+            }else if(props.state[8] && props.state[9] && props.state[10] && props.state[11]){
+                props.onBonusEarned(BonusType.Fox)
             }
 
         }

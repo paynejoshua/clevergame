@@ -1,21 +1,28 @@
 To Do:
-
-[] Create a way to access power ups helper function and use accordingly
-[] Create a way to continue rolling even if only 1 or 2 dice have been selected
+[] Create a way to track special powers for each player: 
+    [x]+1's 
+    [x]roll again
+    [x]double points 
+    [x]triple points
+    []foxes 
+    []wild cards for each color
+    []round special powers
+[] Orange Field fix: 
+    *When dice is placed on double or triple space have dice image reflect the new number in
+    that space. 
 [] Create a way to track who's turn it is for up to 3 players
 [] Create a way to track which round it is
     [] 4 rounds for 4+ players
     [] 5 Rounds for 3 players
     [] 6 Rounds for 1-2 players
-[] Create a way to track special powers for each player (foxes, +1's, roll again, double points, triple points,
-    wild cards for each color, round special powers)
+
 [] Create an animation for dice rolling
 [] Create a way to swap out dice selected with dice remaining and left over field
 [] Create a way to track when left over pile is set and can't be swapped out for a dice in the remaining field or taken field
 
 
 Finished:
-
+[x] Create a way to continue rolling even if only 1 or 2 dice have been selected
 [x] Have 6 dice that get mapped over and generate a random number between 1 & 6 for each
 [x] Create a conditional statement that doesn't allow the player to roll the dice again
 until they have selected which ones they want

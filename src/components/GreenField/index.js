@@ -21,6 +21,8 @@ function GreenField(props) {
                 props.onBonusEarned(BonusType.ReRoll)
             } else if(index === 3){
                 props.onBonusEarned(BonusType.PlusOne)
+            } else if(index === 6){
+                props.onBonusEarned(BonusType.Fox)
             }
         }
     }

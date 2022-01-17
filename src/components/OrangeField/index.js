@@ -24,6 +24,8 @@ function OrangeField(props){
                 props.onBonusEarned(BonusType.ReRoll)
             } else if(index === 5){
                 props.onBonusEarned(BonusType.PlusOne)
+            } else if(index === 7){
+                props.onBonusEarned(BonusType.Fox)
             }
         }
     }
