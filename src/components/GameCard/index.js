@@ -278,7 +278,7 @@ function GameCard() {
     }
 
     const initRounds = () => {
-        setThisGamesRounds(10)
+        setThisGamesRounds(6)
     }
 
     const onBonusEarned = (bonusType, color, number) => {
