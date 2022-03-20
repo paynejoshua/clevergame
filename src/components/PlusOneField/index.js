@@ -19,10 +19,9 @@ function PlusOneField(props) {
     }
 
     const shouldPulse = (index) =>{
+        console.log("current roll number", props.rollNumber)
         
-        console.log("plus one pulse", props.turnState)
-
-        if(props.turnState !== TurnState.RollDice){
+        if(props.turnState !== TurnState.RollDice && props.rollNumber < 3 || props.turnState === TurnState.RollDice && props.rollNumber < 3){
             return false
         }
         return props.turnState === TurnState.RollDice && isNextAvailable(index)
@@ -31,7 +30,7 @@ function PlusOneField(props) {
 
     const onPlusOneClick = (index) =>{
 
-        if(props.turnState !== TurnState.RollDice){
+        if(props.turnState !== TurnState.RollDice && props.rollNumber < 3 || props.turnState === TurnState.RollDice && props.rollNumber < 3){
             return
         }
         

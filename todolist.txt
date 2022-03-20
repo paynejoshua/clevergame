@@ -1,7 +1,7 @@
 To Do:
-[] On plus one activation player is not able to select a die from selected dice pile. 
-[] Plus one is clickable too soon. Should only be in reset dice state
 [] Plus one dice selection gets funky if you start selecting multiple dice before placing one
+    [] Plus one allows you to swap out a dice from the available field to the selected Dice field. 
+    [] Need to create a way for user to switch which dice they are using for the plus one   
 [] Only show warning message once
 
 [] Create a way to track special powers for each player: 
@@ -27,6 +27,8 @@ To Do:
 
 
 Finished:
+[x] Plus one is clickable too soon. Should only be in reset dice state
+[x] On plus one activation player is not able to select a die from selected dice pile. 
 [x] Click on die in selection area after selected and it goes back into main area 
 [x] Have green squares show an 'x' when green dice is selected instead of dice number
 [x] Create a way to continue rolling even if only 1 or 2 dice have been selected
