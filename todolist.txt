@@ -1,8 +1,9 @@
 To Do:
-[] Click on die in selection area after selected and it goes back into main area 
-[] Only show warning message once
+[] On plus one activation player is not able to select a die from selected dice pile. 
 [] Plus one is clickable too soon. Should only be in reset dice state
 [] Plus one dice selection gets funky if you start selecting multiple dice before placing one
+[] Only show warning message once
+
 [] Create a way to track special powers for each player: 
     [x]+1's 
     [x]roll again
@@ -26,6 +27,7 @@ To Do:
 
 
 Finished:
+[x] Click on die in selection area after selected and it goes back into main area 
 [x] Have green squares show an 'x' when green dice is selected instead of dice number
 [x] Create a way to continue rolling even if only 1 or 2 dice have been selected
 [x] Have 6 dice that get mapped over and generate a random number between 1 & 6 for each

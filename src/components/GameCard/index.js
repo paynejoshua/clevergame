@@ -75,11 +75,14 @@ function GameCard() {
 
     const onDiceSelect = (dice) => {
 
+        if(selectedDice.includes(dice) && !plusOneActivated){
+            return
+        }
+
         // TODO: Consolidate duplicate code between SelectDie and PlaceDie []
 
-        console.log("heres your dice", dice)
-
         if (turnState === TurnState.SelectDie) {
+          
 
             if (CanSelectDice(dice, blueDice, wildDice, playerState)) {
 
@@ -102,10 +105,6 @@ function GameCard() {
 
 
         } else if (turnState === TurnState.PlaceDie) {
-
-            if(dice === selectedDice[selectedDice.length -1]){
-                return
-            }
 
             //this means the player is swapping out the last chosen die for a different die
 
