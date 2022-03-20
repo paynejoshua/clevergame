@@ -16,7 +16,9 @@ export const CanSelectDice = (dice, blue, white, playerState) =>{
     )
 }
 
+
 export const CanPlaceYellowDice = (item, turnState, dice) => {
+    
     return (turnState === TurnState.PlaceDie 
         &&  DoesYellowDiceMatch(item, dice)
         ) 

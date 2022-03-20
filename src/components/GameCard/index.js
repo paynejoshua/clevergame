@@ -102,6 +102,11 @@ function GameCard() {
 
 
         } else if (turnState === TurnState.PlaceDie) {
+
+            if(dice === selectedDice[selectedDice.length -1]){
+                return
+            }
+
             //this means the player is swapping out the last chosen die for a different die
 
             // Undo previous selected die
@@ -114,8 +119,8 @@ function GameCard() {
 
             // Select the new die instead
             if (CanSelectDice(dice, blueDice, wildDice, playerState)) {
-                tempSelectedDie.push(dice)
 
+                tempSelectedDie.push(dice)
 
                 setSelectedDice(tempSelectedDie)
 
@@ -128,6 +133,7 @@ function GameCard() {
 
                 markDiceForPlatter(dice, tempAvailableDice)
             } else {
+                console.log("here bae 2")
                 setConfirmDiceChoice(dice)
 
             }
